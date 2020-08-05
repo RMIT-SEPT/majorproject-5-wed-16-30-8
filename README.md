@@ -1,18 +1,17 @@
 # RMIT SEPT 2020 Major Project
 
-# Group 00
+# Group 05
 
 ## Members
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
-* SURNAME, GivenName (sXXXX)
+* Lieu, Darren (s3780893)
+* Yang, Benny (s3781767)
+* Chong, Yen (s3761205)
+* Cracknell, Ben (s3659429)
 
 ## Records
 
-* Github repository : https://github.com/RMIT-SEPT/MajorProject/Groupx
-* ClickUp Workspace : https://app.clickup.com/xxxx/yyyy
+* Github repository : https://github.com/RMIT-SEPT/majorproject-5-wed-16-30-8
+* Trello Workspace : https://trello.com/b/1Rua8Yyy/software-eng-process-tools
 
 
 ## Code documentation
