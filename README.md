@@ -5,8 +5,9 @@
 ## Members
 * Lieu, Darren (s3780893)
 * Yang, Benny (s3781767)
-* Chong, Yen (s3761205)
+* Chong, Yin Yen (s3761205)
 * Cracknell, Ben (s3659429)
+* Slavik, Mitchell (s3723026)
 
 ## Records
 
