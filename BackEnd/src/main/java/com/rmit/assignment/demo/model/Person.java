@@ -15,9 +15,14 @@ public class Person {
     @Size(min = 3, max=20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
     private String name;
-    private String bookIdentifier;
+    private String personIdentifier;
     @NotBlank(message = "Description is required")
     private String desc;
+
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date start_date;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date end_date;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
@@ -25,6 +30,22 @@ public class Person {
     private Date update_At;
 
     public Person() {
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 
     public Long getId() {
@@ -43,12 +64,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getBookIdentifier() {
-        return bookIdentifier;
+    public String getPersonIdentifier() {
+        return personIdentifier;
     }
 
-    public void setBookIdentifier(String bookIdentifier) {
-        this.bookIdentifier = bookIdentifier;
+    public void setPersonIdentifier(String personIdentifier) {
+        this.personIdentifier = personIdentifier;
     }
 
     public String getDesc() {
