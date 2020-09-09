@@ -5,11 +5,11 @@ class AddPerson extends Component {
         super();
 
         this.state={
-            "name": "",
-            "personIdentifier": "",
-            "desc": "",
-            "start_date": "",
-            "end_date": ""
+            name: "",
+            personIdentifier: "",
+            desc: "",
+            start_date: "",
+            end_date: ""
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -23,11 +23,11 @@ class AddPerson extends Component {
         //makes it so when it referesh the page will retain the value and infomation 
         e.preventDefault();
         const newPerson = {
-            "name": this.state.name,
-            "personIdentifier": this.state.personIdentifier,
-            "desc": this.state.desc,
-            "start_date": this.state.start_date,
-            "end_date": this.state.end_date
+            name: this.state.name,
+            personIdentifier: this.state.personIdentifier,
+            desc: this.state.desc,
+            start_date: this.state.start_date,
+            end_date: this.state.end_date
         }
 
         console.log(newPerson);

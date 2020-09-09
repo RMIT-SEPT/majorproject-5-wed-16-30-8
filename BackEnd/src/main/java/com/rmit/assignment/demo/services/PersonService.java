@@ -1,18 +1,55 @@
 package com.rmit.assignment.demo.services;
 
-import com.rmit.assignment.demo.Repositories.PersonRepositories;
+
+import com.rmit.assignment.demo.Repositories.PersonRepository;
+import com.rmit.assignment.demo.exceptions.PersonException;
 import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PersonService {
+
     @Autowired
-    private PersonRepositories personRepositories;
+    private PersonRepository personRepository;
 
-    public Person saveOrUpdatePerson(Person person){
-        //business logic
+    public Person saveOrUpdatePerson(Person person) {
 
-        return personRepositories.save(person);
+        try{
+            person.setPersonIdentifier(person.getPersonIdentifier().toUpperCase());
+            return personRepository.save(person);
+        }catch (Exception e){
+            throw new PersonException("Person ID '"+person.getPersonIdentifier().toUpperCase()+"' already exists");
+        }
+
+    }
+
+
+    public Person findByPersonIdentifier(String personId){
+
+        Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
+
+        if(person == null){
+            throw new PersonException("Person ID '"+personId+"' does not exist");
+
+        }
+
+
+        return person;
+    }
+
+    public Iterable<Person> findAllPersons(){
+        return personRepository.findAll();
+    }
+
+
+    public void deletePersonByIdentifier(String personId){
+        Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
+
+        if(person == null){
+            throw  new PersonException("Cannot Person with ID '"+personId+"'. This person does not exist");
+        }
+
+        personRepository.delete(person);
     }
 }

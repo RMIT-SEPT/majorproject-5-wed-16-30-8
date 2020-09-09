@@ -15,6 +15,9 @@ public class Person {
     @Size(min = 3, max=20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
     private String name;
+    @NotBlank(message ="Project Identifier is required")
+    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+    @Column(updatable = false, unique = true)
     private String personIdentifier;
     @NotBlank(message = "Description is required")
     private String desc;
@@ -96,13 +99,4 @@ public class Person {
         this.update_At = update_At;
     }
 
-    @PrePersist
-    protected void onCreate(){
-        this.created_At = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate(){
-        this.update_At = new Date();
-    }
 }

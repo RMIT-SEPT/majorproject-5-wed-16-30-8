@@ -1,6 +1,7 @@
 package com.rmit.assignment.demo.web;
 
 import com.rmit.assignment.demo.model.Person;
+import com.rmit.assignment.demo.services.MapValidationErrorService;
 import com.rmit.assignment.demo.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,18 +23,40 @@ public class personController {
     @Autowired
     private PersonService personService;
 
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
+
     @PostMapping("")
     public ResponseEntity<?> createNewPerson(@Valid @RequestBody Person person, BindingResult result){
-        if(result.hasErrors()){
-            Map<String,String> errorMap = new HashMap<>();
-            for(FieldError error: result.getFieldErrors()){
-                return new ResponseEntity<List<FieldError>>(result.getFieldErrors(), HttpStatus.BAD_REQUEST);
-            }
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap!=null) return errorMap;
 
-        }
-        Person person1 = personService.saveOrUpdatePerson(person);
+        Person project1 = personService.saveOrUpdatePerson(person);
+        return new ResponseEntity<Person>(project1, HttpStatus.CREATED);
+    }
 
-        return new ResponseEntity<Person>(person, HttpStatus.CREATED);
+    @GetMapping("/{personId}")
+    public ResponseEntity<?> getPersonById(@PathVariable String personId
+
+
+    ){
+
+        Person person = personService.findByPersonIdentifier(personId);
+
+        return new ResponseEntity<Person>(person, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public Iterable<Person> getAllPersons(){return
+
+            personService.findAllPersons();}
+
+
+    @DeleteMapping("/{personId}")
+    public ResponseEntity<?> deleteProject(@PathVariable String personId){
+        personService.deletePersonByIdentifier(personId);
+
+        return new ResponseEntity<String>("Person with ID: '"+personId+"' was deleted", HttpStatus.OK);
     }
 
 
