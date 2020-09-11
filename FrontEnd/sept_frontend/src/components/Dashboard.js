@@ -3,6 +3,7 @@ import Person from './Persons/Person'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import CreatePersonButton from './Persons/CreatePersonButton';
+import CreateBusinessButton from './Business/CreateBusinessButton';
 
 
 class Dashboard extends Component {
@@ -15,6 +16,7 @@ class Dashboard extends Component {
                         <h1 className="display-4 text-center">Persons</h1>
                         <br />
                             <CreatePersonButton/>
+                            <CreateBusinessButton/>
                         <br />
                         <hr />
 
