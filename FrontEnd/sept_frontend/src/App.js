@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import AddPerson from './components/Persons/AddPerson';
 import {Provider} from "react-redux";
 import store from "./store";
+import AddEmployee from './components/Persons/AddEmployee';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
        <Header/>
        <Route path="/dashboard" component={Dashboard}/>
        <Route path="/addPerson" component={AddPerson}/>
+       <Route path="/addEmployee" component={AddEmployee}/>
     </div>
     </Router>
     </Provider>
