@@ -37,27 +37,18 @@ public class personController {
 
     @GetMapping("/{personId}")
     public ResponseEntity<?> getPersonById(@PathVariable String personId
-
-
     ){
-
         Person person = personService.findByPersonIdentifier(personId);
-
         return new ResponseEntity<Person>(person, HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public Iterable<Person> getAllPersons(){return
-
             personService.findAllPersons();}
-
 
     @DeleteMapping("/{personId}")
     public ResponseEntity<?> deleteProject(@PathVariable String personId){
         personService.deletePersonByIdentifier(personId);
-
         return new ResponseEntity<String>("Person with ID: '"+personId+"' was deleted", HttpStatus.OK);
     }
-
-
 }

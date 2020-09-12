@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from"prop-types";
+import { connect } from"react-redux";
+import {createBusiness} from"../../actions/businessActions";
 
 class AddBusiness extends Component {
     constructor(){
@@ -6,10 +9,8 @@ class AddBusiness extends Component {
 
         this.state={
             business_name: "",
-            business_identifier: "",
-            business_desc: "",
-            business_start_date: "",
-            business_end_date: ""
+            businessIdentifier: "",
+            
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -24,14 +25,13 @@ class AddBusiness extends Component {
         e.preventDefault();
         const newBusiness = {
             business_name: this.state.business_name,
-            business_identifier: this.state.business_identifier,
-            business_desc: this.state.business_desc,
-            business_start_date: this.state.business_start_date,
-            business_end_date: this.state.business_end_date
+            businessIdentifier: this.state.businessIdentifier,
+           
         }
         console.log(newBusiness)
 
-        // this.props.createPerson(newPerson,this.props.history);
+
+        this.props.createBusiness(newBusiness,this.props.history);
     }
 
     render() {
@@ -52,31 +52,9 @@ class AddBusiness extends Component {
                         <div className="form-group">
                             <input type="text" className="form-control form-control-lg" placeholder="Unique Business ID"
                                 // disabled 
-                                name="business_identifier"
-                                value={this.state.business_identifier}
+                                name="businessIdentifier"
+                                value={this.state.businessIdentifier}
                                 onChange = {this.onChange}/>
-                        </div>
-                        
-                        <div className="form-group">
-                            <textarea className="form-control form-control-lg" placeholder="Business Description"
-                            name="business_desc"
-                            value={this.state.business_desc}
-                            onChange = {this.onChange}/>
-                        </div>
-                        <h6>Start Date</h6>
-                        <div className="form-group">
-                            <input type="date" className="form-control form-control-lg" 
-                            name="business_start_date" 
-                            
-                            value={this.state.business_start_date}
-                            onChange = {this.onChange}/>
-                        </div>
-                        <h6>Estimated End Date</h6>
-                        <div className="form-group">
-                            <input type="date" className="form-control form-control-lg" name="business_end_date" 
-                            
-                            value={this.state.business_end_date}
-                            onChange = {this.onChange}/>
                         </div>
 
                         <input type="submit" className="btn btn-primary btn-block mt-4" />
@@ -88,4 +66,11 @@ class AddBusiness extends Component {
         )
     }
 }
-export default AddBusiness;
+AddBusiness.propTypes = {
+    createBusiness: PropTypes.func.isRequired
+};
+
+export default connect(
+    null,
+    { createBusiness }
+)(AddBusiness);
