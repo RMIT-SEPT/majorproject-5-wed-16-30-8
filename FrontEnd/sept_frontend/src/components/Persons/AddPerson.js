@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from"prop-types";
+import { connect } from"react-redux";
+import {createPerson} from"../../actions/personActions";
+
+
 
 class AddPerson extends Component {
     constructor(){
@@ -30,7 +35,7 @@ class AddPerson extends Component {
             end_date: this.state.end_date
         }
 
-        console.log(newPerson);
+        this.props.createPerson(newPerson,this.props.history);
     }
 
     render() {
@@ -86,4 +91,11 @@ class AddPerson extends Component {
         )
     }
 }
-export default AddPerson;
+AddPerson.propTypes = {
+    createPerson: PropTypes.func.isRequired
+};
+
+export default connect(
+    null,
+    { createPerson }
+)(AddPerson);
