@@ -32,7 +32,11 @@ public class Person {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
-    public Person() {
+    public Person(long id, String name, String personIdentifier, String desc) {
+        this.id = id;
+        this.name = name;
+        this.personIdentifier = personIdentifier;
+        this.desc = desc;
     }
 
     public Date getStart_date() {
