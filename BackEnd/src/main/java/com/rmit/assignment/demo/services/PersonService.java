@@ -3,6 +3,7 @@ package com.rmit.assignment.demo.services;
 
 import com.rmit.assignment.demo.Repositories.PersonRepository;
 import com.rmit.assignment.demo.exceptions.PersonException;
+import com.rmit.assignment.demo.exceptions.PersonIdException;
 import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,11 @@ public class PersonService {
         try{
             person.setPersonIdentifier(person.getPersonIdentifier().toUpperCase());
             return personRepository.save(person);
-        }catch (Exception e){
+
+        }catch(PersonIdException a) {
+            throw new PersonIdException("Person ID is not acceptable");
+        }
+        catch (Exception e){
             throw new PersonException("Person ID '"+person.getPersonIdentifier().toUpperCase()+"' already exists");
         }
 
@@ -26,16 +31,16 @@ public class PersonService {
 
 
     public Person findByPersonIdentifier(String personId){
-
-        Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
-
-        if(person == null){
+//        if(person == null){
+//            throw new PersonException("Person ID '"+personId+"' does not exist");
+//
+//        }
+        try {
+            Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
+            return person;
+        }catch (Exception e){
             throw new PersonException("Person ID '"+personId+"' does not exist");
-
         }
-
-
-        return person;
     }
 
     public Iterable<Person> findAllPersons(){
@@ -44,12 +49,19 @@ public class PersonService {
 
 
     public void deletePersonByIdentifier(String personId){
-        Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
+//        Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
 
-        if(person == null){
-            throw  new PersonException("Cannot Person with ID '"+personId+"'. This person does not exist");
+//        if(person == null){
+//            throw  new PersonException("Cannot Person with ID '"+personId+"'. This person does not exist");
+//        }
+
+        try{
+            Person person = personRepository.findByPersonIdentifier(personId.toUpperCase());
+            personRepository.delete(person);
+        }catch (Exception e){
+            throw new PersonException("Cannot Person with ID '"+personId+"'. This person does not exist");
         }
 
-        personRepository.delete(person);
+
     }
 }

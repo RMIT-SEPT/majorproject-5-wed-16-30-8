@@ -1,19 +1,96 @@
 package com.rmit.assignment.demo.model;
 
+import com.rmit.assignment.demo.exceptions.PersonException;
+import com.rmit.assignment.demo.exceptions.PersonIdException;
+import com.rmit.assignment.demo.services.PersonService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
+    Person tony;
+    PersonService service;
+    Person marcus;
+
+    @BeforeEach
+    void setup(){
+        tony = new Person(200, "tony", "Customer", "a New person");
+        marcus = new Person(666, "marcus","10mil" ,"creditor");
+
+        service = new PersonService();
+//        service.saveOrUpdatePerson(marcus);
+    }
 
     @Test
-    public void incompletePerson(){
+    void incompletePerson(){
         System.out.println("Test 1: Incomplete Person entry");
-        Person person = new Person(200, "tony", "Customer", "a New person");
-
-        Assertions.assertEquals("tony", person.getName());
-
+        Assertions.assertEquals("tony", tony.getName());
     }
+
+//    @Test
+//    public void saveOrUpdatePerson_Test(){
+//        PersonService service = new PersonService();
+//        Person temp = new Person(200, "tony", "Customer", "a New person");
+//        service.saveOrUpdatePerson(tony);
+//
+//        assertEquals(temp, service.findByPersonIdentifier("200"));
+//    }
+
+    @Test
+    void saveOrUpdatePerson_Exception() throws PersonException{
+        PersonException exception = assertThrows(PersonException.class,()->{
+            Person temp = new Person(200, "tony", "Customer", "a New person");
+            service.saveOrUpdatePerson(temp);
+        });
+        assertEquals("Person ID 'CUSTOMER' already exists", exception.getMessage());
+    }
+
+    @Test
+    void findByPerson_Exception() throws PersonException {
+        PersonException exception = assertThrows(PersonException.class,()->{
+            service.findByPersonIdentifier("1423");
+        });
+        assertEquals("Person ID '1423' does not exist", exception.getMessage());
+    }
+
+    @Test
+    void deletePersonByIdentifier_Exception() throws PersonException {
+        PersonException exception = assertThrows(PersonException.class,()->{
+            service.deletePersonByIdentifier("1423");
+        });
+        assertEquals("Cannot Person with ID '1423'. This person does not exist", exception.getMessage());
+    }
+
+    @Test
+    void saveOrUpdatePerson_Exception2() throws PersonException, PersonIdException{
+        PersonIdException exception = assertThrows(PersonIdException.class,()->{
+            Person temp = new Person(212, "tony", "Custome234524352345r", "a New person");
+            service.saveOrUpdatePerson(temp);
+        });
+        assertEquals("Error has occured", exception.getMessage());
+    }
+
+//    @Test
+//    void findByPersonIdentifier_Test(){
+////        Person marcus = new Person(666, "marcus","10mil" ,"creditor");
+//
+//        assertEquals(marcus, service.findByPersonIdentifier("Customer"));
+//    }
+
+//    @Test
+//    void saveOrUpdatePerson_Test(){
+////        Person marcus = new Person(666, "marcus","10mil" ,"creditor");
+//        assertEquals("Customer", service.saveOrUpdatePerson(tony).getPersonIdentifier());
+//    }
+
+
+
+
+
+
+
 
 }

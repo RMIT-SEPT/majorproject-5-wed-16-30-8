@@ -39,6 +39,10 @@ public class Person {
         this.desc = desc;
     }
 
+    public Person() {
+
+    }
+
     public Date getStart_date() {
         return start_date;
     }
