@@ -103,4 +103,17 @@ public class Person {
         this.update_At = update_At;
     }
 
+    public boolean isValidPerson(){
+        if((this.getName().length()<3 || this.getName().length()>20) && this.getName().matches("[A-Z]+")){
+            return false;
+        }
+        if(this.getPersonIdentifier().length()<4 || this.getPersonIdentifier().length()>5){
+            return false;
+        }
+        if(this.getDesc().equals(" ") || this.getDesc().isEmpty()){
+            return false;
+        }
+
+        return true;
+    };
 }
