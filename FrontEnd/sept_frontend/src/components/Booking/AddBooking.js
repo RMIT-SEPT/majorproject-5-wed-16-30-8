@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from"prop-types";
+import { connect } from"react-redux";
+import {createBooking} from"../../actions/bookingAction";
 
 class AddBooking extends Component {
     constructor(){
         super();
 
         this.state={
-            booking_id: "",
-            business_id: "",
+            bookingIdentifier: "",
+            business_name: "",
             booking_date: ""
         };
 
@@ -22,13 +25,13 @@ class AddBooking extends Component {
         //makes it so when it referesh the page will retain the value and infomation 
         e.preventDefault();
         const newBooking = {
-            booking_id: this.state.booking_id,
-            business_id: this.state.business_id,
+            bookingIdentifier: this.state.bookingIdentifier,
+            business_name: this.state.business_name,
             booking_date: this.state.booking_date
         }
          
         console.log(newBooking);
-        // this.props.createPerson(newPerson,this.props.history);
+        this.props.createBooking(newBooking,this.props.history);
     }
 
 
@@ -44,14 +47,14 @@ class AddBooking extends Component {
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input type="text" className="form-control form-control-lg " placeholder="Booking ID"
-                            name="booking_id" 
-                            value= {this.state.booking_id}
+                            name="bookingIdentifier" 
+                            value= {this.state.bookingIdentifier}
                             onChange = {this.onChange}/>
                         </div>
                         <div className="form-group">
-                            <input type="text" className="form-control form-control-lg" placeholder="Business ID" 
-                                name="business_id"
-                                value={this.state.business_id}
+                            <input type="text" className="form-control form-control-lg" placeholder="Business name" 
+                                name="business_name"
+                                value={this.state.business_name}
                                 onChange = {this.onChange}/>
                         </div>
                     
@@ -73,4 +76,11 @@ class AddBooking extends Component {
         )
     }
 }
-export default AddBooking;
+AddBooking.propTypes = {
+    createBooking: PropTypes.func.isRequired
+};
+
+export default connect(
+    null,
+    { createBooking }
+)(AddBooking);
