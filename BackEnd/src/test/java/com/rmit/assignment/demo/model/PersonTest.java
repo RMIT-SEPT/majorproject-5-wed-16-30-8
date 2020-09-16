@@ -26,6 +26,12 @@ class PersonTest {
     }
 
     @Test
+    public void getDescTest(){
+        System.out.println("Test 1: get persons description entry");
+        Assertions.assertEquals("a New person", tony.getDesc());
+    }
+
+    @Test
     public void isValidPersonTest(){
         System.out.println("Test 2: the person has valid details");
         Assertions.assertTrue(tony.isValidPerson());
