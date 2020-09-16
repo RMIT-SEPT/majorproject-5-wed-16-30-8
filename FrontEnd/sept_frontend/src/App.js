@@ -8,6 +8,7 @@ import AddPerson from './components/Persons/AddPerson';
 import {Provider} from "react-redux";
 import store from "./store";
 import AddBusiness from './components/Business/AddBusiness';
+import AddEmployee from './components/Persons/AddEmployee';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
        <Route path="/dashboard" component={Dashboard}/>
        <Route path="/addPerson" component={AddPerson}/>
        <Route path="/addBusiness" component={AddBusiness}/>
+       <Route path="/addEmployee" component={AddEmployee}/>
     </div>
     </Router>
     </Provider>
