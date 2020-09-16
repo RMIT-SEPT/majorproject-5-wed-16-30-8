@@ -17,7 +17,7 @@ class PersonTest {
     //has a space in the name
     Person luka = new Person(203, "Luka Smith", "Cust", "full name in name field");
     //has symbols in the name
-    Person symbols = new Person(204, "!*$symbol@%#", "Customer", "has symbols in the name");
+    Person symbols = new Person(204, "!*$symbol@%#", "Cust", "has symbols in the name");
 
     @Test
     public void getNameTest(){
@@ -35,6 +35,12 @@ class PersonTest {
     public void isNotValidPersonTest(){
         System.out.println("Test 3: person has invalid details");
         Assertions.assertFalse(yu.isValidPerson());
+    }
+
+    @Test
+    public void invalidNameTest(){
+        System.out.println("Test 4: person has an invalid space in their name");
+        Assertions.assertFalse(luka.isValidPerson());
     }
 
 }
