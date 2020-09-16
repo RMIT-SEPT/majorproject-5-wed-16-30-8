@@ -31,10 +31,7 @@ public class PersonService {
 
         if(person == null){
             throw new PersonException("Person ID '"+personId+"' does not exist");
-
         }
-
-
         return person;
     }
 

@@ -29,8 +29,18 @@ public class Business {
     @JsonFormat(pattern = "yyyy-mm-ddd")
     private Date update_At;
 
+//    @ElementCollection
+//    @CollectionTable(name="listOfUsers")
+//    private ArrayList<String> courses = new ArrayList<String>();
+
     public Business(){
 
+    }
+
+    public Business(Long business_id,String business_name,String businessIdentifier) {
+        this.business_id = business_id;
+        this.business_name = business_name;
+        this.businessIdentifier = businessIdentifier;
     }
 
     public Long getBusiness_id() {
