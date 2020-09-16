@@ -2,10 +2,14 @@ package com.rmit.assignment.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -31,6 +35,12 @@ public class Person {
     private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
+
+    //@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //private Set<Employee> employees = new HashSet<>();
+
+   // @OneToOne(mappedBy = "employee", cascade = {CascadeType.PERSIST} )
+   // private Employee employee;
 
     public Person() {
     }
