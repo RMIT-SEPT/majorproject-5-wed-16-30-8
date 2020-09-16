@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/person")
 @CrossOrigin
-public class personController {
+public class PersonController {
     @Autowired
     private PersonService personService;
 

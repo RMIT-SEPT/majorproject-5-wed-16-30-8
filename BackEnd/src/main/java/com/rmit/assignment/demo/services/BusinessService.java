@@ -2,9 +2,13 @@ package com.rmit.assignment.demo.services;
 
 import com.rmit.assignment.demo.Repositories.BusinessRepository;
 import com.rmit.assignment.demo.exceptions.BusinessException;
+import com.rmit.assignment.demo.exceptions.PersonException;
 import com.rmit.assignment.demo.model.Business;
+import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BusinessService {
@@ -19,5 +23,19 @@ public class BusinessService {
             throw new BusinessException("Person ID '"+business.getBusinessIdentifier().toUpperCase()+"' already exists");
         }
 
+    }
+
+    public Business findByBusinessIdentifier(String businessIdentifier) throws BusinessException{
+
+        Business business = businessRepository.findByBusinessIdentifier(businessIdentifier.toUpperCase());
+
+        if(business == null){
+            throw new BusinessException("Business ID '"+businessIdentifier+"' does not exist");
+        }
+        return business;
+    }
+
+    public List<Business> findAllBusiness(){
+        return businessRepository.findAll();
     }
 }
