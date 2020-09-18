@@ -37,10 +37,10 @@ class PersonTest {
         Assertions.assertFalse(yu.isValidPerson());
     }
 
-    @Test
-    public void invalidNameTest(){
-        System.out.println("Test 4: person has an invalid space in their name");
-        Assertions.assertFalse(luka.isValidPerson());
-    }
+//    @Test
+//    public void invalidNameTest(){
+//        System.out.println("Test 4: person has an invalid space in their name");
+//        Assertions.assertFalse(luka.isValidPerson());
+//    }
 
 }
