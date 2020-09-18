@@ -22,6 +22,7 @@ import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BusinessServiceTest {
 
     @InjectMocks
