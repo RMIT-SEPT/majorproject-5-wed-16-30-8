@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build:
+  build-backend:
 
-    working_directory: ~repo/BackEnd
+    working_directory: ~/repo/BackEnd
     docker:
       - image: circleci/openjdk:8-jdk-stretch
       - image: circleci/postgres:9.6.3-alpine
@@ -25,6 +25,8 @@ jobs:
           paths:
             - ~/.m2
           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+
+      - run: mvm test
 
       - run: mvn package
 
