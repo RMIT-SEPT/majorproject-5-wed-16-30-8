@@ -40,7 +40,7 @@ class AddPerson extends Component {
 
     render() {
         return (
-            <div className="project">
+            <div className="persons">
         <div className="container">
             <div className="row">
                 <div className="col-md-8 m-auto">

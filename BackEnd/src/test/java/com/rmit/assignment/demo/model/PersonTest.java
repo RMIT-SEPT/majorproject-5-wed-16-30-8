@@ -46,7 +46,7 @@ class PersonTest {
     @Test
     public void invalidNameTest(){
         System.out.println("Test 4: person has an invalid space in their name");
-        Assertions.assertFalse(luka.isValidPerson());
+        Assertions.assertFalse(symbols.isValidPerson());
     }
 
 }

@@ -26,7 +26,7 @@ public class Business {
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-ddd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
 //    @ElementCollection
@@ -81,5 +81,22 @@ public class Business {
 
     public void setUpdate_At(Date update_At) {
         this.update_At = update_At;
+    }
+
+    public boolean isBlank() {
+        if (getBusiness_name().isEmpty() || getBusiness_name().equals("")){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validIdentifier() {
+        if (getBusinessIdentifier().length()<4 || getBusinessIdentifier().length()>5){
+            return false;
+        }
+        if (!(getBusinessIdentifier().matches("[A-Z,a-z,0-9]+"))){
+            return false;
+        }
+        return true;
     }
 }
