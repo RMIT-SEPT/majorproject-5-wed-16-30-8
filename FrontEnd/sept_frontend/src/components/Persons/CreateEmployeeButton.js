@@ -7,7 +7,7 @@ const CreateEmployeeButton=() => {
         <Link 
         to="/addEmployee"
         className="btn btn-lg btn-info">
-          Create a Employee
+          Create an Employee
         </Link> 
         </React.Fragment>
     )
