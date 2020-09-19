@@ -1,13 +1,18 @@
 package com.rmit.assignment.demo.model;
 
-import org.junit.Assert;
+import com.rmit.assignment.demo.exceptions.PersonException;
+import com.rmit.assignment.demo.exceptions.PersonIdException;
+import com.rmit.assignment.demo.services.PersonService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Null;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
+
     //valid person
     Person tony = new Person(200, "tony", "Cust", "a New person");
     //name is too short
@@ -44,9 +49,11 @@ class PersonTest {
     }
 
     @Test
-    public void invalidNameTest(){
+    public void invalidNameTest() {
         System.out.println("Test 4: person has an invalid space in their name");
         Assertions.assertFalse(symbols.isValidPerson());
     }
+
+
 
 }
