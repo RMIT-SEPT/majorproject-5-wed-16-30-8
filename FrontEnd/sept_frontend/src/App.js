@@ -11,6 +11,11 @@ import AddBusiness from './components/Business/AddBusiness';
 import AddEmployee from './components/Persons/AddEmployee';
 import AddBooking from './components/Booking/AddBooking';
 
+import PersonsPost from './components/Post/PersonsPost'
+import EmployeesPost from './components/Post/EmployeesPost'
+import BusinessesPost from './components/Post/BusinessesPost'
+import BookingsPost from './components/Post/BookingsPost'
+
 
 function App() {
   return (
@@ -23,6 +28,11 @@ function App() {
        <Route path="/addBusiness" component={AddBusiness}/>
        <Route path="/addEmployee" component={AddEmployee}/>
        <Route path="/booking" component={AddBooking}/>
+       
+       <Route path="/allPersons" component={PersonsPost}/>
+       <Route path="/allEmployees" component={EmployeesPost}/>
+       <Route path="/allBusinesses" component={BusinessesPost}/>
+       <Route path="/allBookings" component={BookingsPost}/>
     </div>
     </Router>
     </Provider>

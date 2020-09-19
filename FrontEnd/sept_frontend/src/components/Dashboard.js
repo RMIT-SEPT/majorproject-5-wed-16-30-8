@@ -6,6 +6,11 @@ import CreatePersonButton from './Persons/CreatePersonButton';
 import CreateBusinessButton from './Business/CreateBusinessButton';
 import CreateEmployeeButton from './Persons/CreateEmployeeButton';
 
+import PostPersonsButton from './Post/PostPersonsButton'
+import PostEmployeesButton from './Post/PostEmployeesButton'
+import PostBusinessesButton from './Post/PostBusinessesButton'
+import PostBookingsButton from './Post/PostBookingsButton'
+
 
 class Dashboard extends Component {
     render() {
@@ -16,11 +21,24 @@ class Dashboard extends Component {
                     <div className="col-md-12">
                         <h1 className="display-4 text-center">Persons</h1>
                         <br />
+                            <h3>Signup</h3>
                             <CreatePersonButton/>
                             
                             <CreateBusinessButton/>
 
                             <CreateEmployeeButton/>
+
+                            <br></br>
+                            <br></br>
+                            <h3>View</h3>
+
+                            <PostPersonsButton />
+
+                            <PostEmployeesButton />
+
+                            <PostBusinessesButton />
+
+                            <PostBookingsButton />
                         <br />
                         <hr />
 
