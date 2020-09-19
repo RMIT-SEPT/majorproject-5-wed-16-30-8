@@ -5,21 +5,21 @@ import com.rmit.assignment.demo.Repositories.BusinessRepository;
 import com.rmit.assignment.demo.exceptions.BusinessException;
 import com.rmit.assignment.demo.model.Business;
 import com.rmit.assignment.demo.services.BusinessService;
-import org.junit.Test;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
 
-
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class BusinessServiceTest {
+
     @InjectMocks
     private BusinessService businessService;
 
@@ -63,14 +63,17 @@ public class BusinessServiceTest {
         Assertions.assertEquals("23EAE",business.getBusinessIdentifier());
     }
 
-    @Test(expected = BusinessException.class)
+    @Test()
     @DisplayName("Test 4: Business service throwing exception due to no such identifier")
     public void findItemNotFound() throws BusinessException{
         Mockito.when(businessRepository.findByBusinessIdentifier("23EAE")).thenReturn(
           null
         );
 
-        Business business = businessService.findByBusinessIdentifier("23EAE");
+        Assertions.assertThrows(BusinessException.class, () -> {
+            Business business = businessService.findByBusinessIdentifier("23EAE");
+        });
+
     }
 
 }
