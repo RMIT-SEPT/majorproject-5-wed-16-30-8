@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import DataTable from './DataTables/PersonsDataTable'
+import DataTable from './DataTables/UsersDataTable'
 
 const API = 'http://localhost:8080/api/user/all';
 
@@ -11,13 +11,13 @@ class PersonsPost extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { personsCollection: [] };
+        this.state = { usersCollection: [] };
     }
 
     componentDidMount() {
         axios.get(API)
             .then(res => {
-                this.setState({ personsCollection: res.data });
+                this.setState({ usersCollection: res.data });
             })
             .catch(function (error) {
                 console.log(error);
@@ -25,7 +25,7 @@ class PersonsPost extends Component {
     }
 
     dataTable() {
-        return this.state.personsCollection.map((data, i) => {
+        return this.state.usersCollection.map((data, i) => {
             return <DataTable obj={data} key={i} />
         });
     }

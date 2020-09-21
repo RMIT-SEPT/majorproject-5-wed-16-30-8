@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class PersonsDataTable extends Component {
+class UsersDataTable extends Component {
     render() {
         return (
             <tr>
@@ -25,4 +25,4 @@ class PersonsDataTable extends Component {
             </tr>
         )
     }
-} export default PersonsDataTable;
+} export default UsersDataTable;
