@@ -7,7 +7,7 @@ const PostPersonsButton = () => {
       <Link
         to="/allPersons"
         className="btn btn-lg btn-info">
-        People
+        Users
         </Link>
     </React.Fragment>
   )

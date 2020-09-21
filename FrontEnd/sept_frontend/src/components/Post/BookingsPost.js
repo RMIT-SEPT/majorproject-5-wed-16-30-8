@@ -33,6 +33,7 @@ class BookingsPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
+                <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Bookings</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">

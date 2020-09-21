@@ -34,6 +34,7 @@ class PersonsPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
+            <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Users</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">
@@ -44,8 +45,6 @@ class PersonsPost extends Component {
                                 <td>Description</td>
                                 <td>Start Date</td>
                                 <td>End Date</td>
-                                <td>Created At</td>
-                                <td>Updated At</td>
                             </tr>
                         </thead>
                         <tbody>
