@@ -18,10 +18,9 @@ public class Business {
     @NotBlank(message = "Business name is required")
     private String business_name;
 
-    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String businessIdentifier;
-
 
 
     @JsonFormat(pattern = "yyyy-mm-dd")
@@ -29,15 +28,12 @@ public class Business {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
-//    @ElementCollection
-//    @CollectionTable(name="listOfUsers")
-//    private ArrayList<String> courses = new ArrayList<String>();
 
-    public Business(){
+    public Business() {
 
     }
 
-    public Business(Long business_id,String business_name,String businessIdentifier) {
+    public Business(Long business_id, String business_name, String businessIdentifier) {
         this.business_id = business_id;
         this.business_name = business_name;
         this.businessIdentifier = businessIdentifier;
@@ -84,17 +80,17 @@ public class Business {
     }
 
     public boolean isBlank() {
-        if (getBusiness_name().isEmpty() || getBusiness_name().equals("")){
+        if (getBusiness_name().isEmpty() || getBusiness_name().equals("")) {
             return true;
         }
         return false;
     }
 
     public boolean validIdentifier() {
-        if (getBusinessIdentifier().length()<4 || getBusinessIdentifier().length()>5){
+        if (getBusinessIdentifier().length() < 4 || getBusinessIdentifier().length() > 5) {
             return false;
         }
-        if (!(getBusinessIdentifier().matches("[A-Z,a-z,0-9]+"))){
+        if (!(getBusinessIdentifier().matches("[A-Z,a-z,0-9]+"))) {
             return false;
         }
         return true;

@@ -1,15 +1,15 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const CreateEmployeeButton=() => {
-    return (
-        <React.Fragment>  
-        <Link 
+const CreateEmployeeButton = () => {
+  return (
+    <React.Fragment>
+      <Link
         to="/addEmployee"
         className="btn btn-lg btn-info">
-          Create a Employee
-        </Link> 
-        </React.Fragment>
-    )
+        Create an Employee
+        </Link>
+    </React.Fragment>
+  )
 };
 export default CreateEmployeeButton;

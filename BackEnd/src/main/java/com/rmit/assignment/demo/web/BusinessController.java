@@ -25,9 +25,9 @@ public class BusinessController {
     private MapValidationErrorService mapValidationErrorService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewBusiness(@Valid @RequestBody Business business, BindingResult result){
+    public ResponseEntity<?> createNewBusiness(@Valid @RequestBody Business business, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Business business1 = businessService.saveOrUpdateBusiness(business);
         return new ResponseEntity<Business>(business1, HttpStatus.CREATED);
@@ -35,12 +35,14 @@ public class BusinessController {
 
     @GetMapping("/{businessId}")
     public ResponseEntity<?> getPersonById(@PathVariable String businessId
-    ){
+    ) {
         Business business = businessService.findByBusinessIdentifier(businessId);
         return new ResponseEntity<Business>(business, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public List<Business> getAllBusiness(){return
-            businessService.findAllBusiness();}
+    public List<Business> getAllBusiness() {
+        return
+                businessService.findAllBusiness();
+    }
 }

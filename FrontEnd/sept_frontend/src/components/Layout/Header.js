@@ -4,47 +4,47 @@ class Header extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-            <div className="container">
+                <div className="container">
 
-                <a className="navbar-brand" href="Dashboard.html">
-                      SEPT 
+                    <a className="navbar-brand" href="dashboard">
+                        SEPT
                 </a>
 
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <span className="navbar-toggle-icon"/>
-                </button>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <span className="navbar-toggle-icon" />
+                    </button>
 
-                <div className="collapse navbar-collapse" id="mobile-nav">
-                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <a className="nav-link " href="/dashboard">
-                                Dashboard
+                    <div className="collapse navbar-collapse" id="mobile-nav">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link " href="/dashboard">
+                                    Dashboard
                             </a>
-                        </li>  
-                        
-                        <li className="nav-item">
-                            <a className="nav-link " href="/booking">
-                                Booking
-                            </a>
-                        </li>
-                     </ul>
+                            </li>
 
-                     <ul className="navbar-nav ml-auto">
-                          <li className="nav-item">
-                             <a className="nav-link " href="/signup">
-                                 Sign Up
+                            <li className="nav-item">
+                                <a className="nav-link " href="/booking">
+                                    Booking
+                            </a>
+                            </li>
+                        </ul>
+
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <a className="nav-link " href="/signup">
+                                    Sign Up
                              </a>
-                          </li>
-                          <li className="nav-item">
-                               <a className="nav-link" href="/login">
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/login">
                                     Login
                                </a>
-                          </li>
-                     </ul>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
-                
-            </div>
-        </nav>
+            </nav>
         )
     }
 }
