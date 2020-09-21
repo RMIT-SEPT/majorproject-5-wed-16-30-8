@@ -3,10 +3,10 @@ package com.rmit.assignment.demo.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class PersonIdException extends RuntimeException{
-    public PersonIdException(String message){
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class UserException extends RuntimeException {
+
+    public UserException(String message) {
         super(message);
     }
 }
-
-

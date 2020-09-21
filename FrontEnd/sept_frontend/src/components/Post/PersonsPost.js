@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import DataTable from './DataTables/PersonsDataTable'
 
-const API = 'http://localhost:8080/api/person/all';
+const API = 'http://localhost:8080/api/user/all';
 const axiosConst = require("axios");
 
 class PersonsPost extends Component {
