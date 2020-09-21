@@ -28,10 +28,10 @@ public class BusinessServiceTest {
 
     @Test
     @DisplayName("Test 1: Business service find all contains business instance")
-    public void findAllBusiness(){
+    public void findAllBusiness() {
         Mockito.when(businessRepository.findAll()).thenReturn(Arrays.asList(
-                new Business((long) 1,"Stark inc", "23EAE"),
-                new Business((long) 2,"Good inc", "4H3JE")
+                new Business((long) 1, "Stark inc", "23EAE"),
+                new Business((long) 2, "Good inc", "4H3JE")
         ));
 
         List<Business> allBusiness = businessService.findAllBusiness();
@@ -41,10 +41,10 @@ public class BusinessServiceTest {
 
     @Test
     @DisplayName("Test 2: Business service contains two business")
-    public void findAllBusinessSize(){
+    public void findAllBusinessSize() {
         Mockito.when(businessRepository.findAll()).thenReturn(Arrays.asList(
-                new Business((long) 1,"Stark inc", "23EAE"),
-                new Business((long) 2,"Good inc", "4H3JE")
+                new Business((long) 1, "Stark inc", "23EAE"),
+                new Business((long) 2, "Good inc", "4H3JE")
         ));
 
         List<Business> allBusiness = businessService.findAllBusiness();
@@ -56,18 +56,18 @@ public class BusinessServiceTest {
     @DisplayName("Test 3: Business service find instance with identifier")
     public void findItemByIdentifier() {
         Mockito.when(businessRepository.findByBusinessIdentifier("23EAE")).thenReturn(
-                new Business((long) 1,"Stark inc","23EAE"));
+                new Business((long) 1, "Stark inc", "23EAE"));
 
         Business business = businessService.findByBusinessIdentifier("23EAE");
 
-        Assertions.assertEquals("23EAE",business.getBusinessIdentifier());
+        Assertions.assertEquals("23EAE", business.getBusinessIdentifier());
     }
 
     @Test()
     @DisplayName("Test 4: Business service throwing exception due to no such identifier")
-    public void findItemNotFound() throws BusinessException{
+    public void findItemNotFound() throws BusinessException {
         Mockito.when(businessRepository.findByBusinessIdentifier("23EAE")).thenReturn(
-          null
+                null
         );
 
         Assertions.assertThrows(BusinessException.class, () -> {

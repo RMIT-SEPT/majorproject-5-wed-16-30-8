@@ -7,20 +7,24 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+
 @Entity
 @Table(name="person")
-public class Person {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
+public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    @Size(min = 3, max=20, message = "Please enter 3 to 20 characters")
+    @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
     @Column(name="name")
     private String name;
-    @NotBlank(message ="Project Identifier is required")
-    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
-    @Column()
+    @NotBlank(message = "Project Identifier is required")
+    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
+    @Column(name="person_identifier")
+//    @Column(updatable = false, unique = true)
     private String personIdentifier;
     @NotBlank(message = "Description is required")
     @Column(name="desc")
@@ -119,17 +123,19 @@ public class Person {
         this.update_At = update_At;
     }
 
-    public boolean isValidPerson(){
-        if((this.getName().length()<3 || this.getName().length()>20) || !(this.getName().matches("[A-Z,a-z]+"))){
+    public boolean isValidPerson() {
+        if ((this.getName().length() < 3 || this.getName().length() > 20) || !(this.getName().matches("[A-Z,a-z]+"))) {
             return false;
         }
-        if(this.getPersonIdentifier().length()<4 || this.getPersonIdentifier().length()>5){
+        if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
             return false;
         }
-        if(this.getDesc().equals(" ") || this.getDesc().isEmpty()){
+        if (this.getDesc().equals(" ") || this.getDesc().isEmpty()) {
             return false;
         }
 
         return true;
-    };
+    }
+
+    ;
 }

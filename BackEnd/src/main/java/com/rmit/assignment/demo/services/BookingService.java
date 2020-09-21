@@ -12,23 +12,25 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public Booking saveOrUpdateBooking(Booking booking){
-        try{
+    public Booking saveOrUpdateBooking(Booking booking) {
+        try {
             booking.setBookingIdentifier(booking.getBookingIdentifier().toUpperCase());
             return bookingRepository.save(booking);
-        }catch (Exception e){
-            throw new BookingException("Booking ID '" + booking.getBookingIdentifier().toUpperCase()+ "'already exists");
+        } catch (Exception e) {
+            throw new BookingException("Booking ID '" + booking.getBookingIdentifier().toUpperCase() + "'already exists");
         }
     }
 
-    public Booking findByBookingIdentifier(String bookingId){
+    public Booking findByBookingIdentifier(String bookingId) {
         Booking booking = bookingRepository.findByBookingIdentifier(bookingId.toUpperCase());
 
-        if(booking == null){
+        if (booking == null) {
             throw new BookingException("Person ID '" + bookingId + "' does not exist");
         }
         return booking;
     }
 
-    public Iterable<Booking> findAllBooking() {return bookingRepository.findAll();}
+    public Iterable<Booking> findAllBooking() {
+        return bookingRepository.findAll();
+    }
 }

@@ -1,9 +1,9 @@
 package com.rmit.assignment.demo.exceptions;
 
-public class PersonIdExceptionResponse {
+public class UserIdExceptionResponse {
     private String personIdentifier;
 
-    public PersonIdExceptionResponse(String projectIdentifier) {
+    public UserIdExceptionResponse(String projectIdentifier) {
         this.personIdentifier = projectIdentifier;
     }
 
