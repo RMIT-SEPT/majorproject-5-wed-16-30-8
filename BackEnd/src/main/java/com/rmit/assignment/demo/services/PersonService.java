@@ -15,9 +15,13 @@ public class PersonService {
     private PersonRepository personRepository;
 
     public Person saveOrUpdatePerson(Person person) {
+        System.out.println(person.getName());
+        System.out.println(person.getPersonIdentifier());
+        System.out.println(person.getId());
 
         try{
             person.setPersonIdentifier(person.getPersonIdentifier().toUpperCase());
+            System.out.println(person.getPersonIdentifier());
             return personRepository.save(person);
 
         }catch(PersonIdException a) {

@@ -8,35 +8,47 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table(name="person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     @Size(min = 3, max=20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
+    @Column(name="name")
     private String name;
     @NotBlank(message ="Project Identifier is required")
     @Size(min=4,max =5, message = "please enter 4 to 5 characters")
-    @Column(updatable = false, unique = true)
+    @Column()
     private String personIdentifier;
     @NotBlank(message = "Description is required")
+    @Column(name="desc")
     private String desc;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    @Column(name="start_date")
     private Date start_date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date end_date;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date update_At;
 
-    public Person(long id, String name, String personIdentifier, String desc) {
-        this.id = id;
+    public Person(String name, String personIdentifier, String desc, Date start_date, Date end_date, Date created_At, Date update_At) {
         this.name = name;
         this.personIdentifier = personIdentifier;
         this.desc = desc;
+        this.start_date=start_date;
+        this.end_date=end_date;
+        this.created_At=created_At;
+        this.update_At=update_At;
     }
 
     public Person() {
