@@ -23,22 +23,24 @@ public class BookingController {
     private MapValidationErrorService mapValidationErrorService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewBooking(@Valid @RequestBody Booking booking, BindingResult result){
+    public ResponseEntity<?> createNewBooking(@Valid @RequestBody Booking booking, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Booking booking1 = bookingService.saveOrUpdateBooking(booking);
         return new ResponseEntity<Booking>(booking1, HttpStatus.CREATED);
     }
 
     @GetMapping("/{bookingId}")
-    public ResponseEntity<?> getBookingById(@PathVariable String bookingId){
+    public ResponseEntity<?> getBookingById(@PathVariable String bookingId) {
         Booking booking = bookingService.findByBookingIdentifier(bookingId);
-        return new ResponseEntity<Booking>(booking,HttpStatus.OK);
+        return new ResponseEntity<Booking>(booking, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Booking> getAllPersons(){return bookingService.findAllBooking();}
+    public Iterable<Booking> getAllPersons() {
+        return bookingService.findAllBooking();
+    }
 
 
 }

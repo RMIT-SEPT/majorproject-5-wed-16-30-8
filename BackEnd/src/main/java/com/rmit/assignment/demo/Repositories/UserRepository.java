@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends PersonRepository{
+public interface UserRepository extends PersonRepository {
 
     @Override
     @Query("from User")

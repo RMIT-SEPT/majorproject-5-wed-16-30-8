@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface BusinessRepository extends CrudRepository<Business, Long> {
     Business findByBusinessIdentifier(String businessId) throws BusinessException;
+
     @Override
-    List<Business> findAll() ;
+    List<Business> findAll();
 }

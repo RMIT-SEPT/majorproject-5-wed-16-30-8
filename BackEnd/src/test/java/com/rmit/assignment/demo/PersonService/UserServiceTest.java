@@ -1,7 +1,6 @@
 package com.rmit.assignment.demo.PersonService;
 
 import com.rmit.assignment.demo.exceptions.UserException;
-import com.rmit.assignment.demo.model.Person;
 import com.rmit.assignment.demo.model.User;
 import com.rmit.assignment.demo.services.UserService;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +21,7 @@ public class UserServiceTest {
         marcus = new User(666, "marcus", "10mil", "creditor");
 
         service = new UserService();
-//        service.saveOrUpdatePerson(marcus);
+
     }
 
     @Test
@@ -56,13 +55,4 @@ public class UserServiceTest {
         assertEquals("Cannot User with ID '1423'. This user does not exist", exception.getMessage());
 
     }
-
-//    @Test
-//    void saveOrUpdatePerson_Exception2() throws PersonException, PersonIdException {
-//        PersonIdException exception = assertThrows(PersonIdException.class,()->{
-//            Person temp = new Person(212, "tony", "Custome234524352345r", "a New person");
-//            service.saveOrUpdatePerson(temp);
-//        });
-//        assertEquals("Error has occured", exception.getMessage());
-//    }
 }

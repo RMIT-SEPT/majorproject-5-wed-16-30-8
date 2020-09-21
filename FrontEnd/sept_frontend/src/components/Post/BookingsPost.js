@@ -15,12 +15,12 @@ class BookingsPost extends Component {
 
     componentDidMount() {
         axios.get(API)
-        .then(res => {
-            this.setState({ bookingsCollection: res.data });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+            .then(res => {
+                this.setState({ bookingsCollection: res.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     dataTable() {

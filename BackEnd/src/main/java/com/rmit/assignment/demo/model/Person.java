@@ -10,16 +10,16 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 3, max=20, message = "Please enter 3 to 20 characters")
+    @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
     private String name;
-    @NotBlank(message ="Project Identifier is required")
-    @Size(min=4,max =5, message = "please enter 4 to 5 characters")
+    @NotBlank(message = "Project Identifier is required")
+    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String personIdentifier;
     @NotBlank(message = "Description is required")
@@ -110,17 +110,19 @@ public abstract class Person {
         this.update_At = update_At;
     }
 
-    public boolean isValidPerson(){
-        if((this.getName().length()<3 || this.getName().length()>20) || !(this.getName().matches("[A-Z,a-z]+"))){
+    public boolean isValidPerson() {
+        if ((this.getName().length() < 3 || this.getName().length() > 20) || !(this.getName().matches("[A-Z,a-z]+"))) {
             return false;
         }
-        if(this.getPersonIdentifier().length()<4 || this.getPersonIdentifier().length()>5){
+        if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
             return false;
         }
-        if(this.getDesc().equals(" ") || this.getDesc().isEmpty()){
+        if (this.getDesc().equals(" ") || this.getDesc().isEmpty()) {
             return false;
         }
 
         return true;
-    };
+    }
+
+    ;
 }

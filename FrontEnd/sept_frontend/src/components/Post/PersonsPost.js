@@ -4,7 +4,7 @@ import axios from 'axios'
 import DataTable from './DataTables/PersonsDataTable'
 
 const API = 'http://localhost:8080/api/user/all';
-const axiosConst = require("axios");
+
 
 class PersonsPost extends Component {
 
@@ -16,12 +16,12 @@ class PersonsPost extends Component {
 
     componentDidMount() {
         axios.get(API)
-        .then(res => {
-            this.setState({ personsCollection: res.data });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+            .then(res => {
+                this.setState({ personsCollection: res.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     dataTable() {

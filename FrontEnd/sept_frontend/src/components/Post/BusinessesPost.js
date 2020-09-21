@@ -4,7 +4,7 @@ import axios from 'axios'
 import DataTable from './DataTables/BusinessDataTable'
 
 const API = 'http://localhost:8080/api/business/all';
-const axiosConst = require("axios");
+
 
 class BusinessesPost extends Component {
 
@@ -16,12 +16,12 @@ class BusinessesPost extends Component {
 
     componentDidMount() {
         axios.get(API)
-        .then(res => {
-            this.setState({ businessCollection: res.data });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+            .then(res => {
+                this.setState({ businessCollection: res.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
     }
 
     dataTable() {

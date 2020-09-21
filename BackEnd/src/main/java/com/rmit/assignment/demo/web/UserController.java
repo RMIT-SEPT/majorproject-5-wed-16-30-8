@@ -25,9 +25,9 @@ public class UserController {
     private MapValidationErrorService mapValidationErrorService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result){
+    public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap!=null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         User user1 = userService.saveOrUpdateUser(user);
         return new ResponseEntity<User>(user1, HttpStatus.CREATED);
@@ -35,18 +35,20 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUserById(@PathVariable String userId
-    ){
+    ) {
         Person user = userService.findByUserIdentifier(userId);
         return new ResponseEntity<Person>(user, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Person> getAllUsers(){return
-            userService.findAllUsers();}
+    public Iterable<Person> getAllUsers() {
+        return
+                userService.findAllUsers();
+    }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<?> deleteProject(@PathVariable String userId){
+    public ResponseEntity<?> deleteProject(@PathVariable String userId) {
         userService.deleteUserByIdentifier(userId);
-        return new ResponseEntity<String>("User with ID: '"+userId+"' was deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("User with ID: '" + userId + "' was deleted", HttpStatus.OK);
     }
 }

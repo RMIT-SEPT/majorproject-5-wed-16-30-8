@@ -24,22 +24,22 @@ public class EmployeeController {
     private MapValidationErrorService mapValidationErrorService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewEmployee(@Valid @RequestBody Employee employee, BindingResult result){
+    public ResponseEntity<?> createNewEmployee(@Valid @RequestBody Employee employee, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap!=null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Employee employee1 = employeeService.saveOrUpdateEmployee(employee);
         return new ResponseEntity<Employee>(employee1, HttpStatus.CREATED);
     }
 
     @GetMapping("{userId}")
-    public ResponseEntity<?> getEmployeeById(@PathVariable String employeeId){
+    public ResponseEntity<?> getEmployeeById(@PathVariable String employeeId) {
         Person employee = employeeService.findByEmployeeIdentifer(employeeId);
-        return new ResponseEntity<Person>(employee,HttpStatus.OK);
+        return new ResponseEntity<Person>(employee, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Person> getAllEmployee(){
+    public Iterable<Person> getAllEmployee() {
         return employeeService.findAllEmployee();
     }
 }

@@ -16,17 +16,17 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="Persons">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <h1 className="display-4 text-center">Persons</h1>
-                        <br />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h1 className="display-4 text-center">Persons</h1>
+                            <br />
                             <h3>Signup</h3>
-                            <CreatePersonButton/>
-                            
-                            <CreateBusinessButton/>
+                            <CreatePersonButton />
 
-                            <CreateEmployeeButton/>
+                            <CreateBusinessButton />
+
+                            <CreateEmployeeButton />
 
                             <br></br>
                             <br></br>
@@ -39,15 +39,15 @@ class Dashboard extends Component {
                             <PostBusinessesButton />
 
                             <PostBookingsButton />
-                        <br />
-                        <hr />
+                            <br />
+                            <hr />
 
-                        <Person/>
+                            <Person />
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
