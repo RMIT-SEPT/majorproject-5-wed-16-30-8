@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class PersonsDataTable extends Component {
+class EmployeesDataTable extends Component {
     render() {
         return (
             <tr>
@@ -17,18 +17,15 @@ class PersonsDataTable extends Component {
                     {this.props.obj.desc}
                 </td>
                 <td>
+                    {this.props.obj.businessIdentifier}
+                </td>
+                <td>
                     {this.props.obj.start_date}
                 </td>
                 <td>
                     {this.props.obj.end_date}
                 </td>
-                <td>
-                    {this.props.obj.created_At}
-                </td>
-                <td>
-                    {this.props.obj.update_At}
-                </td>
             </tr>
         )
     }
-} export default PersonsDataTable;
+} export default EmployeesDataTable;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import DataTable from './DataTables/PersonsDataTable'
+import DataTable from './DataTables/UsersDataTable'
 
 const API = 'http://localhost:8080/api/user/all';
 
@@ -11,13 +11,13 @@ class PersonsPost extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { personsCollection: [] };
+        this.state = { usersCollection: [] };
     }
 
     componentDidMount() {
         axios.get(API)
             .then(res => {
-                this.setState({ personsCollection: res.data });
+                this.setState({ usersCollection: res.data });
             })
             .catch(function (error) {
                 console.log(error);
@@ -25,7 +25,7 @@ class PersonsPost extends Component {
     }
 
     dataTable() {
-        return this.state.personsCollection.map((data, i) => {
+        return this.state.usersCollection.map((data, i) => {
             return <DataTable obj={data} key={i} />
         });
     }
@@ -34,6 +34,7 @@ class PersonsPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
+            <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Users</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">
@@ -44,8 +45,6 @@ class PersonsPost extends Component {
                                 <td>Description</td>
                                 <td>Start Date</td>
                                 <td>End Date</td>
-                                <td>Created At</td>
-                                <td>Updated At</td>
                             </tr>
                         </thead>
                         <tbody>

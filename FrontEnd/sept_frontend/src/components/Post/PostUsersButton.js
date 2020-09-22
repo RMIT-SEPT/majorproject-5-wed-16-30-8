@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-const PostPersonsButton = () => {
+const PostUsersButton = () => {
   return (
     <React.Fragment>
       <Link
-        to="/allPersons"
+        to="/allUsers"
         className="btn btn-lg btn-info">
-        People
+        Users
         </Link>
     </React.Fragment>
   )
 };
-export default PostPersonsButton;
+export default PostUsersButton;

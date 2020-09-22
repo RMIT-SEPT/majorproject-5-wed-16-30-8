@@ -5,7 +5,7 @@ import { createPerson } from "../../actions/personActions";
 
 
 
-class AddPerson extends Component {
+class AddUser extends Component {
     constructor() {
         super();
 
@@ -91,11 +91,11 @@ class AddPerson extends Component {
         )
     }
 }
-AddPerson.propTypes = {
+AddUser.propTypes = {
     createPerson: PropTypes.func.isRequired
 };
 
 export default connect(
     null,
     { createPerson }
-)(AddPerson);
+)(AddUser);

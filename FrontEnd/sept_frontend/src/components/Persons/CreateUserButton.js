@@ -5,9 +5,9 @@ const CreatePersonButton = () => {
   return (
     <React.Fragment>
       <Link
-        to="/addPerson"
+        to="/addUser"
         className="btn btn-lg btn-info">
-        Create a Person
+        Create a User
         </Link>
     </React.Fragment>
   )
