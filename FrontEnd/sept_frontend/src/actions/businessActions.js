@@ -3,7 +3,7 @@ import { GET_ERRORS } from "./types";
 
 export const createBusiness = (business, history) => async dispatch => {
     try {
-        const res = await axios.post("http://localhost:8080/api/business", business);
+        const res = await axios.post("http://ec2-3-80-254-120.compute-1.amazonaws.com:8080/api/business", business);
         history.push("/dashboard");
 
     } catch (err) {
