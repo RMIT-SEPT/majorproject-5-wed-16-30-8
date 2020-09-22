@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import DataTable from './DataTables/BusinessDataTable'
 
-const API = 'http://localhost:8080/api/business/all';
+const API = 'http://ec2-3-80-254-120.compute-1.amazonaws.com:8080/api/business/all';
 
 
 class BusinessesPost extends Component {
