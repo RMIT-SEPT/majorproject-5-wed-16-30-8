@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import DataTable from './DataTables/BusinessDataTable'
+import DataTable from './DataTables/BookingsDataTable'
 
 const API = 'http://localhost:8080/api/booking/all';
 
@@ -39,8 +39,9 @@ class BookingsPost extends Component {
                         <thead className="thead-dark">
                             <tr>
                                 <td>Booking ID</td>
-                                <td>booking Identifier</td>
+                                <td>Booking Identifier</td>
                                 <td>Business ID</td>
+                                <td>Business Name</td>
                                 <td>Booking Date</td>
                             </tr>
                         </thead>
