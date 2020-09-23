@@ -19,40 +19,32 @@ public abstract class Person {
     @NotBlank(message = "Person name is required")
     private String name;
     @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
+    @Size(min = 4, max = 20, message = "please enter 4 to 5 characters")
     @Column(updatable = false, unique = true)
+    //username
     private String personIdentifier;
-    @NotBlank(message = "Description is required")
-    private String desc;
-
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date start_date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date end_date;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date end_date;
 
-    public Person(long id, String name, String personIdentifier, String desc) {
+    public Person(long id, String name, String personIdentifier, String password, String ph_Num,String address) {
         this.id = id;
         this.name = name;
         this.personIdentifier = personIdentifier;
-        this.desc = desc;
     }
 
     public Person() {
 
     }
 
-    public Date getStart_date() {
-        return start_date;
-    }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
+    private String address;
+    private String ph_Num;
+    private String password;
 
     public Date getEnd_date() {
         return end_date;
@@ -60,6 +52,30 @@ public abstract class Person {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPh_Num() {
+        return ph_Num;
+    }
+
+    public void setPh_Num(String ph_Num) {
+        this.ph_Num = ph_Num;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {
@@ -86,14 +102,6 @@ public abstract class Person {
         this.personIdentifier = personIdentifier;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Date getCreated_At() {
         return created_At;
     }
@@ -117,9 +125,7 @@ public abstract class Person {
         if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
             return false;
         }
-        if (this.getDesc().equals(" ") || this.getDesc().isEmpty()) {
-            return false;
-        }
+
 
         return true;
     }

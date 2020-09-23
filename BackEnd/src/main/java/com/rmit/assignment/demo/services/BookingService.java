@@ -14,15 +14,14 @@ public class BookingService {
 
     public Booking saveOrUpdateBooking(Booking booking) {
         try {
-            booking.setBookingIdentifier(booking.getBookingIdentifier().toUpperCase());
             return bookingRepository.save(booking);
         } catch (Exception e) {
-            throw new BookingException("Booking ID '" + booking.getBookingIdentifier().toUpperCase() + "'already exists");
+            throw new BookingException("Error Booking was not created");
         }
     }
 
-    public Booking findByBookingIdentifier(String bookingId) {
-        Booking booking = bookingRepository.findByBookingIdentifier(bookingId.toUpperCase());
+    public Booking findByBookingIdentifier(long bookingId) {
+        Booking booking = bookingRepository.findByBookingIdentifier(bookingId);
 
         if (booking == null) {
             throw new BookingException("Person ID '" + bookingId + "' does not exist");

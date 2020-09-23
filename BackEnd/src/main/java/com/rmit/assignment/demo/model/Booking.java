@@ -15,27 +15,32 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long booking_id;
 
-    @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
-    @NotBlank(message = "Booking Identifier is required")
-    @Column(updatable = false, unique = true)
-    private String bookingIdentifier;
-
     private long business_id;
-    @NotBlank(message = "Business name required")
-    private String business_name;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date booking_date;
 
+
+    private String service;
+    private String employee_id;
+
     public Booking() {
     }
 
-    public String getBookingIdentifier() {
-        return bookingIdentifier;
+    public String getService() {
+        return service;
     }
 
-    public void setBookingIdentifier(String bookingIdentifer) {
-        this.bookingIdentifier = bookingIdentifer;
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public String getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(String employee_id) {
+        this.employee_id = employee_id;
     }
 
     public long getBooking_id() {
@@ -52,14 +57,6 @@ public class Booking {
 
     public void setBusiness_id(long business_id) {
         this.business_id = business_id;
-    }
-
-    public String getBusiness_name() {
-        return business_name;
-    }
-
-    public void setBusiness_name(String business_name) {
-        this.business_name = business_name;
     }
 
     public Date getBooking_date() {

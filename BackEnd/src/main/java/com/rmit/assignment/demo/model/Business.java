@@ -11,13 +11,12 @@ import java.util.Date;
 
 @Entity
 public class Business {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long business_id;
+
 
     @NotBlank(message = "Business name is required")
     private String business_name;
 
+    @Id
     @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String businessIdentifier;
@@ -28,24 +27,18 @@ public class Business {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
+    //service need a way to be stored
 
     public Business() {
 
     }
 
-    public Business(Long business_id, String business_name, String businessIdentifier) {
-        this.business_id = business_id;
+    public Business( String business_name, String businessIdentifier) {
+
         this.business_name = business_name;
         this.businessIdentifier = businessIdentifier;
     }
 
-    public Long getBusiness_id() {
-        return business_id;
-    }
-
-    public void setBusiness_id(Long business_id) {
-        this.business_id = business_id;
-    }
 
     public String getBusinessIdentifier() {
         return businessIdentifier;
