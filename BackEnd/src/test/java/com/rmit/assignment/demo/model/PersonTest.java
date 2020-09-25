@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package com.rmit.assignment.demo.model;
 //
 //import com.rmit.assignment.demo.exceptions.PersonException;
@@ -58,7 +58,7 @@
 //
 //
 //}
-=======
+
 package com.rmit.assignment.demo.model;
 
 import org.junit.jupiter.api.Assertions;
@@ -109,4 +109,4 @@ class PersonTest {
 
 
 }
->>>>>>> 59cc0d6333644715d6a41da5814f8767149740a8
+

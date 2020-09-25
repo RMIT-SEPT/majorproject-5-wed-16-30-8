@@ -59,6 +59,8 @@ public abstract class Person {
 
     }
 
+
+
     public Date getStart_date() {
         return start_date;
     }
