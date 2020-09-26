@@ -13,12 +13,6 @@ class BusinessDataTable extends Component {
                 <td>
                     {this.props.obj.businessIdentifier}
                 </td>
-                <td>
-                    {this.props.obj.created_At}
-                </td>
-                <td>
-                    {this.props.obj.update_At}
-                </td>
             </tr>
         )
     }

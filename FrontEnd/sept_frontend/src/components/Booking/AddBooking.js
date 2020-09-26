@@ -10,6 +10,7 @@ class AddBooking extends Component {
         this.state = {
             bookingIdentifier: "",
             business_name: "",
+            service,
             booking_date: ""
         };
 
@@ -27,6 +28,7 @@ class AddBooking extends Component {
         const newBooking = {
             bookingIdentifier: this.state.bookingIdentifier,
             business_name: this.state.business_name,
+            service: this.state.service,
             booking_date: this.state.booking_date
         }
 
@@ -35,6 +37,7 @@ class AddBooking extends Component {
     }
 
 
+    //drop down box to select Business and Employee and service
 
     render() {
         return (
@@ -57,6 +60,7 @@ class AddBooking extends Component {
                                         value={this.state.business_name}
                                         onChange={this.onChange} />
                                 </div>
+                                
 
                                 <h6>Booking Date</h6>
                                 <div className="form-group">

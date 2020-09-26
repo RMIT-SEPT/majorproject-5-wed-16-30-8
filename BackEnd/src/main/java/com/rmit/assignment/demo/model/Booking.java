@@ -9,64 +9,85 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table(name="bookings")
 public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long booking_id;
+    @Column(name="booking_identifier")
+    private int bookingIdentifier;
+    @Column(name="business_identifier")
+    private String businessIdentifier;
 
-    @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
-    @NotBlank(message = "Booking Identifier is required")
-    @Column(updatable = false, unique = true)
-    private String bookingIdentifier;
+    @Column(name="booking_Date")
+    private Date booking_Date;
+    @Column(name="created_At")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date created_At;
 
-    private long business_id;
-    @NotBlank(message = "Business name required")
-    private String business_name;
+    @Column(name="updated_At")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date updated_At;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date booking_date;
+    private String service;
+    private String employee_id;
 
     public Booking() {
     }
 
-    public String getBookingIdentifier() {
+    public int getBookingIdentifier() {
         return bookingIdentifier;
     }
 
-    public void setBookingIdentifier(String bookingIdentifer) {
-        this.bookingIdentifier = bookingIdentifer;
+    public void setBookingIdentifier(int bookingIdentifier) {
+        this.bookingIdentifier = bookingIdentifier;
     }
 
-    public long getBooking_id() {
-        return booking_id;
+    public String getBusinessIdentifier() {
+        return businessIdentifier;
     }
 
-    public void setBooking_id(long booking_id) {
-        this.booking_id = booking_id;
+    public void setBusinessIdentifier(String businessIdentifier) {
+        this.businessIdentifier = businessIdentifier;
     }
 
-    public long getBusiness_id() {
-        return business_id;
+    public Date getBooking_Date() {
+        return booking_Date;
     }
 
-    public void setBusiness_id(long business_id) {
-        this.business_id = business_id;
+    public void setBooking_Date(Date booking_Date) {
+        this.booking_Date = booking_Date;
     }
 
-    public String getBusiness_name() {
-        return business_name;
+    public Date getCreated_At() {
+        return created_At;
     }
 
-    public void setBusiness_name(String business_name) {
-        this.business_name = business_name;
+    public void setCreated_At(Date created_At) {
+        this.created_At = created_At;
     }
 
-    public Date getBooking_date() {
-        return booking_date;
+    public Date getUpdated_At() {
+        return updated_At;
     }
 
-    public void setBooking_date(Date booking_date) {
-        this.booking_date = booking_date;
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public String getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(String employee_id) {
+        this.employee_id = employee_id;
     }
 }

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import Person from './Persons/Person'
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import CreatePersonButton from './Persons/CreatePersonButton';
+import CreateUserButton from './Persons/CreateUserButton';
 import CreateBusinessButton from './Business/CreateBusinessButton';
 import CreateEmployeeButton from './Persons/CreateEmployeeButton';
 
-import PostPersonsButton from './Post/PostPersonsButton'
+import PostUsersButton from './Post/PostUsersButton'
 import PostEmployeesButton from './Post/PostEmployeesButton'
 import PostBusinessesButton from './Post/PostBusinessesButton'
 import PostBookingsButton from './Post/PostBookingsButton'
@@ -22,7 +22,7 @@ class Dashboard extends Component {
                             <h1 className="display-4 text-center">Persons</h1>
                             <br />
                             <h3>Signup</h3>
-                            <CreatePersonButton />
+                            <CreateUserButton />
 
                             <CreateBusinessButton />
 
@@ -32,7 +32,7 @@ class Dashboard extends Component {
                             <br></br>
                             <h3>View</h3>
 
-                            <PostPersonsButton />
+                            <PostUsersButton />
 
                             <PostEmployeesButton />
 

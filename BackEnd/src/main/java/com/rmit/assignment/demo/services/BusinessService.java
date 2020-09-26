@@ -14,8 +14,12 @@ public class BusinessService {
     private BusinessRepository businessRepository;
 
     public Business saveOrUpdateBusiness(Business business) {
+        System.out.println(business.getBusinessIdentifier());
+        System.out.println(business.getBusiness_name());
+
         try {
             business.setBusinessIdentifier(business.getBusinessIdentifier().toUpperCase());
+
             return businessRepository.save(business);
         } catch (Exception e) {
             throw new BusinessException("Person ID '" + business.getBusinessIdentifier().toUpperCase() + "' already exists");

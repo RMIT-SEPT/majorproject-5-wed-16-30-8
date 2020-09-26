@@ -32,7 +32,7 @@ public class BookingController {
     }
 
     @GetMapping("/{bookingId}")
-    public ResponseEntity<?> getBookingById(@PathVariable String bookingId) {
+    public ResponseEntity<?> getBookingById(@PathVariable long bookingId) {
         Booking booking = bookingService.findByBookingIdentifier(bookingId);
         return new ResponseEntity<Booking>(booking, HttpStatus.OK);
     }

@@ -13,61 +13,52 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name="id")
+//    private Long id;
     @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
     @Column(name="name")
     private String name;
+    @Id
     @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
-    @Column(name="person_identifier")
-//    @Column(updatable = false, unique = true)
+    @Size(min = 4, max = 20, message = "please enter 4 to 5 characters")
+    @Column(updatable = false, unique = true)
+    //username
     private String personIdentifier;
-    @NotBlank(message = "Description is required")
-    @Column(name="desc")
-    private String desc;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-    @Column(name="start_date")
-    private Date start_date;
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-    private Date end_date;
-
+    @Column(name="created_At")
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date created_At;
+    @Column(name="updated_At")
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-    private Date update_At;
+    private Date updated_At;
+    @Column(name="end_date")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date end_date;
 
-    public Person(String name, String personIdentifier, String desc, Date start_date, Date end_date, Date created_At, Date update_At) {
+    @Column(name="address")
+    private String address;
+    @Column(name="ph_Num")
+    private String ph_Num;
+    @Column(name="password")
+    private String password;
+
+    public Person(String name, String personIdentifier, String password, String ph_Num,String address, Date created_At) {
         this.name = name;
         this.personIdentifier = personIdentifier;
-        this.desc = desc;
-        this.start_date=start_date;
-        this.end_date=end_date;
+        this.password=password;
+        this.ph_Num=ph_Num;
+        this.address=address;
         this.created_At=created_At;
-        this.update_At=update_At;
     }
 
     public Person() {
-
     }
 
 
-
-    public Date getStart_date() {
-        return start_date;
-    }
-
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
 
     public Date getEnd_date() {
         return end_date;
@@ -77,13 +68,30 @@ public abstract class Person {
         this.end_date = end_date;
     }
 
-    public Long getId() {
-        return id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getPh_Num() {
+        return ph_Num;
+    }
+
+    public void setPh_Num(String ph_Num) {
+        this.ph_Num = ph_Num;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getName() {
         return name;
@@ -101,14 +109,6 @@ public abstract class Person {
         this.personIdentifier = personIdentifier;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Date getCreated_At() {
         return created_At;
     }
@@ -117,12 +117,12 @@ public abstract class Person {
         this.created_At = created_At;
     }
 
-    public Date getUpdate_At() {
-        return update_At;
+    public Date getUpdated_At() {
+        return updated_At;
     }
 
-    public void setUpdate_At(Date update_At) {
-        this.update_At = update_At;
+    public void setUpdated_At(Date update_At) {
+        this.updated_At = update_At;
     }
 
     public boolean isValidPerson() {
@@ -132,9 +132,7 @@ public abstract class Person {
         if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
             return false;
         }
-        if (this.getDesc().equals(" ") || this.getDesc().isEmpty()) {
-            return false;
-        }
+
 
         return true;
     }

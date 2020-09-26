@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import DataTable from './DataTables/BusinessDataTable'
 
-const API = 'http://localhost:8080/api/business/all';
+const API = 'http://ec2-3-80-254-120.compute-1.amazonaws.com:8080/api/business/all';
 
 
 class BusinessesPost extends Component {
@@ -34,6 +34,7 @@ class BusinessesPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
+            <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Businesses</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">
@@ -41,8 +42,6 @@ class BusinessesPost extends Component {
                                 <td>ID</td>
                                 <td>Name</td>
                                 <td>Identifier</td>
-                                <td>Created At</td>
-                                <td>Updated At</td>
                             </tr>
                         </thead>
                         <tbody>

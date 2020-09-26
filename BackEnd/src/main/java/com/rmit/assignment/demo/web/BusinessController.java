@@ -42,7 +42,6 @@ public class BusinessController {
 
     @GetMapping("/all")
     public List<Business> getAllBusiness() {
-        return
-                businessService.findAllBusiness();
+        return businessService.findAllBusiness();
     }
 }
