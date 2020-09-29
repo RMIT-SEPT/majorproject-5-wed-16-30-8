@@ -4,14 +4,19 @@ package com.rmit.assignment.demo.services;
 import com.rmit.assignment.demo.Repositories.UserRepository;
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.exceptions.UserIdException;
+import com.rmit.assignment.demo.exceptions.PersonIdAlreadyExistsException;
 import com.rmit.assignment.demo.model.Person;
 import com.rmit.assignment.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Service
 public class UserService {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -30,7 +35,6 @@ public class UserService {
 
     }
 
-
     public Person findByUserIdentifier(String userId) {
 
         try {
@@ -45,7 +49,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-
     public void deleteUserByIdentifier(String userId) {
         try {
             Person user = userRepository.findByPersonIdentifier(userId.toUpperCase());
@@ -55,5 +58,17 @@ public class UserService {
         }
 
 
+    }
+
+    public User saveUserRegistration (User registeringUser){
+        try{
+            registeringUser.setPassword(bCryptPasswordEncoder.encode(registeringUser.getPassword()));
+            registeringUser.setPersonIdentifier(registeringUser.getPersonIdentifier());
+            registeringUser.setPassword("");
+            return userRepository.save(registeringUser);
+        }catch (Exception e){
+            System.out.println("error at save Registration");
+            throw new PersonIdAlreadyExistsException("Person Identifier '"+registeringUser.getPersonIdentifier()+"' already exists");
+        }
     }
 }

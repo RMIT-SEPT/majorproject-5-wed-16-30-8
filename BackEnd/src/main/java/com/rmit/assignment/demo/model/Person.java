@@ -23,7 +23,7 @@ public abstract class Person {
     private String name;
     @Id
     @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4, max = 20, message = "please enter 4 to 5 characters")
+    @Size(min = 4, max = 20, message = "please enter 4 to 20 characters")
     @Column(updatable = false, unique = true)
     //username
     private String personIdentifier;
@@ -57,8 +57,6 @@ public abstract class Person {
 
     public Person() {
     }
-
-
 
     public Date getEnd_date() {
         return end_date;
@@ -133,9 +131,16 @@ public abstract class Person {
             return false;
         }
 
-
         return true;
     }
 
-    ;
+    @PrePersist
+    protected void onCreate() {
+        this.created_At = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_At = new Date();
+    }
 }
