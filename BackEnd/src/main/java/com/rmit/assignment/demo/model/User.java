@@ -8,7 +8,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@DiscriminatorValue(value = "USER")
+@Table(name="user")
+//@DiscriminatorValue(value = "USER")
 public class User extends Person {
 
 

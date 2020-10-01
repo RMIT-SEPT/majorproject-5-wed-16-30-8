@@ -10,7 +10,8 @@ import java.util.Date;
 
 @Entity
 @Table(name="person")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@MappedSuperclass
 @DiscriminatorColumn(name = "ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Person {
 //    @Id

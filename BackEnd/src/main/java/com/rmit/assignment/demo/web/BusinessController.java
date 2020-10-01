@@ -44,4 +44,19 @@ public class BusinessController {
     public List<Business> getAllBusiness() {
         return businessService.findAllBusiness();
     }
+
+    @PutMapping("/{businessId}")
+    public ResponseEntity<?> updateBusiness(@Valid @RequestBody Business business, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Business business1 = businessService.saveOrUpdateBusiness(business);
+        return new ResponseEntity<Business>(business1, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{businessId}")
+    public ResponseEntity<?> deleteBusiness(@PathVariable String businessId) {
+        businessService.deleteBusiness(businessId);
+        return new ResponseEntity<String>("User with ID: '" + businessId + "' was deleted", HttpStatus.OK);
+    }
 }

@@ -32,7 +32,7 @@ public class BookingController {
     }
 
     @GetMapping("/{bookingId}")
-    public ResponseEntity<?> getBookingById(@PathVariable long bookingId) {
+    public ResponseEntity<?> getBookingById(@PathVariable int bookingId) {
         Booking booking = bookingService.findByBookingIdentifier(bookingId);
         return new ResponseEntity<Booking>(booking, HttpStatus.OK);
     }
@@ -40,6 +40,21 @@ public class BookingController {
     @GetMapping("/all")
     public Iterable<Booking> getAllPersons() {
         return bookingService.findAllBooking();
+    }
+
+    @DeleteMapping("/{bookingId}")
+    public ResponseEntity<?> deleteBooking(@PathVariable String bookingId) {
+        bookingService.deleteBooking(bookingId);
+        return new ResponseEntity<String>("User with ID: '" + bookingId + "' was deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("/{bookingId}")
+    public ResponseEntity<?> updateBooking(@Valid @RequestBody Booking booking, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Booking booking1 = bookingService.saveOrUpdateBooking(booking);
+        return new ResponseEntity<Booking>(booking1, HttpStatus.CREATED);
     }
 
 

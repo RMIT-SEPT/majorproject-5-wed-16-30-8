@@ -3,7 +3,9 @@ package com.rmit.assignment.demo.services;
 
 import com.rmit.assignment.demo.Repositories.BookingRepository;
 import com.rmit.assignment.demo.exceptions.BookingException;
+import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.Booking;
+import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ public class BookingService {
         }
     }
 
-    public Booking findByBookingIdentifier(long bookingId) {
+    public Booking findByBookingIdentifier(int bookingId) {
         Booking booking = bookingRepository.findByBookingIdentifier(bookingId);
 
         if (booking == null) {
@@ -31,5 +33,14 @@ public class BookingService {
 
     public Iterable<Booking> findAllBooking() {
         return bookingRepository.findAll();
+    }
+
+    public void deleteBooking(String bookingId) {
+        try {
+            Booking user = bookingRepository.findByBookingIdentifier(Integer.parseInt(bookingId));
+            bookingRepository.delete(user);
+        } catch (Exception e) {
+            throw new UserException("Issue with deleting boooking Id: '"+bookingId+"'");
+        }
     }
 }

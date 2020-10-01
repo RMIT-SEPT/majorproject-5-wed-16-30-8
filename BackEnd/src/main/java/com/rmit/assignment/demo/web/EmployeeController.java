@@ -3,6 +3,7 @@ package com.rmit.assignment.demo.web;
 
 import com.rmit.assignment.demo.model.Employee;
 import com.rmit.assignment.demo.model.Person;
+import com.rmit.assignment.demo.model.User;
 import com.rmit.assignment.demo.services.EmployeeService;
 import com.rmit.assignment.demo.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,29 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(employee1, HttpStatus.CREATED);
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("{employeeId}")
     public ResponseEntity<?> getEmployeeById(@PathVariable String employeeId) {
         Person employee = employeeService.findByEmployeeIdentifer(employeeId);
         return new ResponseEntity<Person>(employee, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Person> getAllEmployee() {
+    public Iterable<Employee> getAllEmployee() {
         return employeeService.findAllEmployee();
+    }
+
+    @DeleteMapping("/{employeeId}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable String employeeId) {
+        employeeService.deleteEmployeeByIdentifier(employeeId);
+        return new ResponseEntity<String>("User with ID: '" + employeeId + "' was deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("/{employeeId}")
+    public ResponseEntity<?> updateBusiness(@Valid @RequestBody Employee employee, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Employee employee1 = employeeService.saveOrUpdateEmployee(employee);
+        return new ResponseEntity<Employee>(employee1, HttpStatus.CREATED);
     }
 }
