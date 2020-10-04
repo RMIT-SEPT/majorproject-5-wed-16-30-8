@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createBooking } from "../../actions/bookingAction";
 
+import makeAnimated from 'react-select/animated';
+import AsyncSelect from 'react-select/async';
+
+const API = "http://localhost:8080/api/business/all"
+
 class AddBooking extends Component {
     constructor() {
         super();
@@ -10,25 +15,79 @@ class AddBooking extends Component {
         this.state = {
             bookingIdentifier: "",
             business_name: "",
-            service,
-            booking_date: ""
+            booking_date: "",
+            // businessIdentifier: "",
+            selectedOption: ""
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onBusinessChange = this.onBusinessChange.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    onBusinessChange(name) {
+        this.setState({ business_name: name})
+    }
+
+    fetchData = (inputValue, callback) => {
+        if(!inputValue) {
+            callback([]);
+        } else {
+            setTimeout(() => {
+                fetch(API, {
+                    method: "GET",
+                })
+                .then((resp) => {
+                    return resp.json()
+                })
+                .then((data) => {
+                    const tempArray = [];
+                    data.forEach((element) => {
+                        tempArray.push({ label: element.business_name, value: element.businessIdentifier });
+                    });
+                    callback(tempArray);
+                })
+                .catch((error) => {
+                    console.log(error, "Catch the hoop")
+                });
+            });
+        }
+    }
+
+    onSearchChange = (selectedOption) => {
+        if(selectedOption) {
+            this.setState({
+                selectedOption,
+                business_name: selectedOption.label
+                // businessIdentifier: selectedOption.value
+            });
+        }
+    };
+
     onSubmit(e) {
         //makes it so when it referesh the page will retain the value and infomation 
         e.preventDefault();
+
+        if(this.state.business_name === "") {
+            alert("Please enter a business name")
+            return
+        }
+        if(this.state.bookingIdentifier === "") {
+            alert("Please enter a booking number")
+            return
+        }
+        if(this.state.booking_date === "") {
+            alert("Please enter a date for your booking")
+            return
+        }
+
         const newBooking = {
             bookingIdentifier: this.state.bookingIdentifier,
             business_name: this.state.business_name,
-            service: this.state.service,
             booking_date: this.state.booking_date
         }
 
@@ -40,6 +99,7 @@ class AddBooking extends Component {
     //drop down box to select Business and Employee and service
 
     render() {
+        const animatedComponents = makeAnimated();
         return (
             <div className="booking">
                 <div className="container">
@@ -70,6 +130,18 @@ class AddBooking extends Component {
                                         onChange={this.onChange} />
                                 </div>
 
+                                <div className="col-sm">
+                                    <AsyncSelect 
+                                        placeholder="Select a business" 
+                                        value={this.state.selectedOption}
+                                        loadOptions={this.fetchData}
+                                        onChange={(e) => {
+                                            this.onSearchChange(e); 
+                                        }}
+                                        defaultOptions={false}
+                                        components={animatedComponents} required
+                                    />
+                                </div>
 
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>
