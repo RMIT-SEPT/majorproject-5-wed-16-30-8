@@ -41,7 +41,6 @@ class BusinessesPost extends Component {
                             <tr>
                                 <td>ID</td>
                                 <td>Name</td>
-                                <td>Identifier</td>
                             </tr>
                         </thead>
                         <tbody>

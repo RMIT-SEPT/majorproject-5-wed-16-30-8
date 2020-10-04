@@ -13,25 +13,27 @@ class AddBooking extends Component {
         super();
 
         this.state = {
-            bookingIdentifier: "",
+            // bookingIdentifier: "",
             business_name: "",
             booking_date: "",
-            // businessIdentifier: "",
-            selectedOption: ""
+            businessIdentifier: "",
+            selectedOption: "",
+            idCounter: 0
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.onBusinessChange = this.onBusinessChange.bind(this);
+        this.onSearchChange = this.onSearchChange.bind(this);
     }
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    onBusinessChange(name) {
-        this.setState({ business_name: name})
-    }
+    // setBookingId() {
+    //     let businessCollection = this.fetchData();
+    //     let id = this.idCounter;
+    // }
 
     fetchData = (inputValue, callback) => {
         if(!inputValue) {
@@ -62,8 +64,8 @@ class AddBooking extends Component {
         if(selectedOption) {
             this.setState({
                 selectedOption,
-                business_name: selectedOption.label
-                // businessIdentifier: selectedOption.value
+                business_name: selectedOption.label,
+                businessIdentifier: selectedOption.value
             });
         }
     };
@@ -76,19 +78,23 @@ class AddBooking extends Component {
             alert("Please enter a business name")
             return
         }
-        if(this.state.bookingIdentifier === "") {
-            alert("Please enter a booking number")
-            return
-        }
-        if(this.state.booking_date === "") {
-            alert("Please enter a date for your booking")
-            return
-        }
+        // if(this.state.bookingIdentifier === "") {
+        //     alert("Please enter a booking number")
+        //     return
+        // }
+        // if(this.state.booking_date === "") {
+        //     alert("Please enter a date for your booking")
+        //     return
+        // }
+
+        // this.bookingIdentifier = "bo";
+        // this.idCounter++;
 
         const newBooking = {
-            bookingIdentifier: this.state.bookingIdentifier,
-            business_name: this.state.business_name,
-            booking_date: this.state.booking_date
+            // booking_identifier: this.state.bookingIdentifier,
+            businessIdentifier: this.state.businessIdentifier,
+            booking_Date: this.state.booking_date
+
         }
 
         console.log(newBooking);
@@ -108,21 +114,41 @@ class AddBooking extends Component {
                             <h5 className="display-4 text-center">Booking</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
+                                {/*<div className="form-group">
+                                <h5>Booking id</h5>
                                     <input type="text" className="form-control form-control-lg " placeholder="Booking ID"
                                         name="bookingIdentifier"
                                         value={this.state.bookingIdentifier}
                                         onChange={this.onChange} />
+                                </div> */}
+
+                                <h5>Business</h5>
+
+                                <div className="drop-down">
+                                    <AsyncSelect 
+                                        placeholder="Start typing to view businesses" 
+                                        value={this.state.selectedOption}
+                                        loadOptions={this.fetchData}
+                                        onChange={(e) => {
+                                            this.onSearchChange(e); 
+                                        }}
+                                        defaultOptions={false}
+                                        components={animatedComponents}
+                                    />
                                 </div>
-                                <div className="form-group">
+
+                                {
+                                    // Business_name option box
+                                }
+                                {/*<div className="form-group">
                                     <input type="text" className="form-control form-control-lg" placeholder="Business name"
                                         name="business_name"
                                         value={this.state.business_name}
                                         onChange={this.onChange} />
-                                </div>
+                                </div> */}
                                 
 
-                                <h6>Booking Date</h6>
+                                <h5>Booking Date</h5>
                                 <div className="form-group">
                                     <input type="date" className="form-control form-control-lg"
                                         name="booking_date"
@@ -130,18 +156,7 @@ class AddBooking extends Component {
                                         onChange={this.onChange} />
                                 </div>
 
-                                <div className="col-sm">
-                                    <AsyncSelect 
-                                        placeholder="Select a business" 
-                                        value={this.state.selectedOption}
-                                        loadOptions={this.fetchData}
-                                        onChange={(e) => {
-                                            this.onSearchChange(e); 
-                                        }}
-                                        defaultOptions={false}
-                                        components={animatedComponents} required
-                                    />
-                                </div>
+
 
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>

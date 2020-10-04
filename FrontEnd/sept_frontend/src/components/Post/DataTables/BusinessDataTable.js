@@ -5,13 +5,10 @@ class BusinessDataTable extends Component {
         return (
             <tr>
                 <td>
-                    {this.props.obj.business_id}
+                    {this.props.obj.businessIdentifier}
                 </td>
                 <td>
                     {this.props.obj.business_name}
-                </td>
-                <td>
-                    {this.props.obj.businessIdentifier}
                 </td>
             </tr>
         )
