@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 
 class BookingDataTable extends Component {
 
-    getDateString(date) {
-        var dateString =
-        date.getUTCFullYear() + "-" +
-        ("0" + (date.getUTCMonth()+1)).slice(-2) + "-" +
-        ("0" + date.getUTCDate()).slice(-2) + "-" +
-        ("0" + date.getUTCHours()).slice(-2) + "-" +
-        ("0" + date.getUTCMinutes()).slice(-2) + "-" +
-        ("0" + date.getUTCSeconds()).slice(-2);
-        return dateString;
-    }
-
     render() {
+        fetch('http://localhost:8080/api/business/' + this.props.obj.businessIdentifier, {
+                    method: "GET",
+                })
+                .then((resp) => {
+                    return resp.json()
+                })
+                .then((data) => {
+                    this.props.obj.business_name = data.business_name
+                    
+                })
+
         return (
             <tr>
                 <td>
@@ -22,6 +22,7 @@ class BookingDataTable extends Component {
                 <td>
                     {this.props.obj.businessIdentifier}
                 </td>
+                
                 <td>
                     {this.props.obj.business_name}
                 </td>

@@ -19,6 +19,7 @@ public class Booking {
     @Column(name="business_identifier")
     private String businessIdentifier;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name="booking_Date")
     private Date booking_Date;
     @Column(name="created_At")
