@@ -27,6 +27,12 @@ class Header extends Component {
                                     Booking
                             </a>
                             </li>
+
+                            <li className="nav-item">
+                                <a className="nav-link " href="/profile">
+                                    Profile
+                            </a>
+                            </li>
                         </ul>
 
                         <ul className="navbar-nav ml-auto">
