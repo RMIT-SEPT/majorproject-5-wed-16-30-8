@@ -15,6 +15,7 @@ import UsersPost from './components/Post/UserPost'
 import EmployeesPost from './components/Post/EmployeesPost'
 import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
+import login from './components/LogIn/login';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         <div>
           <Header />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/addUser" component={AddUser} />
+          <Route path="/signup" component={AddUser} />
           <Route path="/addBusiness" component={AddBusiness} />
           <Route path="/addEmployee" component={AddEmployee} />
           <Route path="/booking" component={AddBooking} />
@@ -33,6 +34,7 @@ function App() {
           <Route path="/allEmployees" component={EmployeesPost} />
           <Route path="/allBusinesses" component={BusinessesPost} />
           <Route path="/allBookings" component={BookingsPost} />
+          <Route path="/login" component={login} />
         </div>
       </Router>
     </Provider>

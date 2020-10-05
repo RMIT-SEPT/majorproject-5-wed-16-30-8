@@ -10,7 +10,7 @@ class AddBooking extends Component {
         this.state = {
             bookingIdentifier: "",
             business_name: "",
-            service,
+            service: "",
             booking_date: ""
         };
 
