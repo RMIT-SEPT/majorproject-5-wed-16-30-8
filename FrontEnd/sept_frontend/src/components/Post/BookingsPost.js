@@ -39,7 +39,6 @@ class BookingsPost extends Component {
                         <thead className="thead-dark">
                             <tr>
                                 <td>Booking ID</td>
-                                <td>Business Identifier</td>
                                 <td>Business Name</td>
                                 <td>Booking Date</td>
                             </tr>

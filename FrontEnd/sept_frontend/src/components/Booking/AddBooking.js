@@ -93,7 +93,8 @@ class AddBooking extends Component {
         const newBooking = {
             // booking_identifier: this.state.bookingIdentifier,
             businessIdentifier: this.state.businessIdentifier,
-            booking_Date: this.state.booking_date
+            booking_Date: this.state.booking_date,
+            business_name: this.state.business_name
 
         }
 

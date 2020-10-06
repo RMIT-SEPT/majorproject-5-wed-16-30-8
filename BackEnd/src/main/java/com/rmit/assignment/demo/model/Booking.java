@@ -19,6 +19,9 @@ public class Booking {
     @Column(name="business_identifier")
     private String businessIdentifier;
 
+    @Column(name="business_name")
+    private String business_name;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name="booking_Date")
     private Date booking_Date;
@@ -50,6 +53,14 @@ public class Booking {
 
     public void setBusinessIdentifier(String businessIdentifier) {
         this.businessIdentifier = businessIdentifier;
+    }
+
+    public String getBusiness_name() {
+        return business_name;
+    }
+
+    public void setBusiness_name(String business_name) {
+        this.business_name = business_name;
     }
 
     public Date getBooking_Date() {

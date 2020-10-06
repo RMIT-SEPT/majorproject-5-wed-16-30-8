@@ -19,9 +19,6 @@ class BookingDataTable extends Component {
                 <td>
                     {this.props.obj.bookingIdentifier}
                 </td>
-                <td>
-                    {this.props.obj.businessIdentifier}
-                </td>
                 
                 <td>
                     {this.props.obj.business_name}
