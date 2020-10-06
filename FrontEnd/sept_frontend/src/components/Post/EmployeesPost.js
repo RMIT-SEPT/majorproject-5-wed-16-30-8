@@ -42,10 +42,7 @@ class EmployeesPost extends Component {
                                 <td>ID</td>
                                 <td>Identifier</td>
                                 <td>Name</td>
-                                <td>Description</td>
                                 <td>Business ID</td>
-                                <td>Start Date</td>
-                                <td>End Date</td>
                             </tr>
                         </thead>
                         <tbody>

@@ -39,12 +39,8 @@ class PersonsPost extends Component {
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">
                             <tr>
-                                <td>ID</td>
                                 <td>Identifier</td>
                                 <td>Name</td>
-                                <td>Description</td>
-                                <td>Start Date</td>
-                                <td>End Date</td>
                             </tr>
                         </thead>
                         <tbody>

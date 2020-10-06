@@ -49,7 +49,7 @@ class AddUser extends Component {
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg " placeholder="User Name"
+                                    <input type="text" className="form-control form-control-lg " placeholder="Full Name"
                                         name="name"
                                         value={this.state.name}
                                         onChange={this.onChange} />
