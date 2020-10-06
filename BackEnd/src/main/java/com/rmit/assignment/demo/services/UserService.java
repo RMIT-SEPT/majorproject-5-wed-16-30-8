@@ -9,12 +9,18 @@ import com.rmit.assignment.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    //Check if username exist in the system
+
+
 
     public User saveOrUpdateUser(User user) {
         try {
@@ -47,4 +53,25 @@ public class UserService {
             throw new UserException("Cannot User with ID '" + userId + "'. This user does not exist");
         }
     }
+
+    public User findByIdentifierPassword(User user){
+
+        User loginUser = userRepository.findByPersonIdentifier(user.getPersonIdentifier());
+
+        User loginPerson2 = matchNameAndPassword(loginUser, user.getPassword());
+
+        if(loginPerson2== null){
+            throw new UserException("password not match");
+        }
+        return loginPerson2;
+    }
+
+    private User matchNameAndPassword(User user, String password){
+
+            if(user.getPassword().equals(password)){
+                return user;
+            }
+            return null;
+        }
+
 }
