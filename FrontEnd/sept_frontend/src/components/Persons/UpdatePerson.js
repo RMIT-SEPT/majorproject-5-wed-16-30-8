@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 
         this.state = {
             name: "",
-            personIdentifier: "",
+            personIdentifier: "12aa",
             password: "",
             address: "",
             ph_Num: ""
