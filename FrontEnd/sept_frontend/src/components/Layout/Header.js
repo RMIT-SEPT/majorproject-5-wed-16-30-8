@@ -37,7 +37,7 @@ class Header extends Component {
 
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <a className="nav-link " href="/addUser">
+                                <a className="nav-link " href="/signup">
                                     Sign Up
                              </a>
                             </li>

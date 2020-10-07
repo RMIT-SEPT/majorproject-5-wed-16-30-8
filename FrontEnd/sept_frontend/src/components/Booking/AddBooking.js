@@ -15,10 +15,15 @@ class AddBooking extends Component {
         this.state = {
             // bookingIdentifier: "",
             business_name: "",
+<<<<<<< HEAD
             booking_date: "",
             businessIdentifier: "",
             selectedOption: "",
             idCounter: 0
+=======
+            service: "",
+            booking_date: ""
+>>>>>>> origin/frontend_login_signup_page
         };
 
         this.onChange = this.onChange.bind(this);
