@@ -15,6 +15,9 @@ import UsersPost from './components/Post/UserPost'
 import EmployeesPost from './components/Post/EmployeesPost'
 import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
+import PersonProfile from './components/Persons/PersonProfile';
+import UpdatePerson from './components/Persons/UpdatePerson';
+
 
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
           <Route path="/allEmployees" component={EmployeesPost} />
           <Route path="/allBusinesses" component={BusinessesPost} />
           <Route path="/allBookings" component={BookingsPost} />
+
+          <Route path="/profile" component={PersonProfile} />
+          <Route path="/updateUser" component={UpdatePerson} />
         </div>
       </Router>
     </Provider>
