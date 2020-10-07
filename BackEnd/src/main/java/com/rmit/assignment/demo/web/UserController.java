@@ -32,7 +32,7 @@ public class UserController {
         return new ResponseEntity<User>(user1, HttpStatus.CREATED);
     }
 
-    @PostMapping("")
+    @PostMapping("/login")
     public ResponseEntity<User> loginAsUser(@RequestBody User user){
 
         User user1 = userService.findByIdentifierPassword(user);

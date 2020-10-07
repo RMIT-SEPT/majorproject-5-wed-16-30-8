@@ -39,7 +39,6 @@ class EmployeesPost extends Component {
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">
                             <tr>
-                                <td>ID</td>
                                 <td>Identifier</td>
                                 <td>Name</td>
                                 <td>Business ID</td>

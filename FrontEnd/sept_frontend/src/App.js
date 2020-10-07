@@ -18,7 +18,7 @@ import BookingsPost from './components/Post/BookingsPost'
 import PersonProfile from './components/Persons/PersonProfile';
 import UpdatePerson from './components/Persons/UpdatePerson';
 
-import login from './components/LogIn/login';
+import Login from './components/Login/Login';
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
 
           <Route path="/profile" component={PersonProfile} />
           <Route path="/updateUser" component={UpdatePerson} />
-          <Route path="/login" component={login} />
+          <Route path="/Login" component={Login} />
         </div>
       </Router>
     </Provider>

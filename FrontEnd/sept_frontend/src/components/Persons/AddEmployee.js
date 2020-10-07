@@ -15,10 +15,11 @@ class AddEmployee extends Component {
         this.state = {
             name: "",
             personIdentifier: "",
-            businessIdentifier: "",
+            businessId: "",
             password: "",
             address: "",
-            ph_Num: ""
+            ph_Num: "",
+            businessIdentifier: ""
             
 
         };
@@ -38,7 +39,7 @@ class AddEmployee extends Component {
         const newEmployee = {
             name: this.state.name,
             personIdentifier: this.state.personIdentifier,
-            businessIdentifier: this.state.businessIdentifier,
+            businessId: this.state.businessId,
             password: this.state.password,
             address: this.state.address,
             ph_Num: this.state.ph_Num
@@ -77,6 +78,7 @@ class AddEmployee extends Component {
             this.setState({
                 selectedOption,
                 business_name: selectedOption.label,
+                businessId: selectedOption.value,
                 businessIdentifier: selectedOption.value
             });
         }
