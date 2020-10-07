@@ -15,13 +15,10 @@ import UsersPost from './components/Post/UserPost'
 import EmployeesPost from './components/Post/EmployeesPost'
 import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
-<<<<<<< HEAD
 import PersonProfile from './components/Persons/PersonProfile';
 import UpdatePerson from './components/Persons/UpdatePerson';
 
-=======
 import login from './components/LogIn/login';
->>>>>>> origin/frontend_login_signup_page
 
 
 function App() {
@@ -40,13 +37,10 @@ function App() {
           <Route path="/allEmployees" component={EmployeesPost} />
           <Route path="/allBusinesses" component={BusinessesPost} />
           <Route path="/allBookings" component={BookingsPost} />
-<<<<<<< HEAD
 
           <Route path="/profile" component={PersonProfile} />
           <Route path="/updateUser" component={UpdatePerson} />
-=======
           <Route path="/login" component={login} />
->>>>>>> origin/frontend_login_signup_page
         </div>
       </Router>
     </Provider>
