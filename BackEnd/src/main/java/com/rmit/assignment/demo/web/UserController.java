@@ -32,6 +32,14 @@ public class UserController {
         return new ResponseEntity<User>(user1, HttpStatus.CREATED);
     }
 
+    @PostMapping("")
+    public ResponseEntity<User> loginAsUser(@RequestBody User user){
+
+        User user1 = userService.findByIdentifierPassword(user);
+
+        return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUserById(@PathVariable String userId) {
         Person user = userService.findByUserIdentifier(userId);
