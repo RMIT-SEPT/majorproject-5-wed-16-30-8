@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createPerson } from "../../actions/personActions";
+import Header from '../Layout/Header'
 
 
 
@@ -42,6 +43,11 @@ class AddUser extends Component {
     render() {
         return (
             <div className="persons">
+                <Header 
+                personIdentifier={this.props.personIdentifier}
+                address={this.props.address}
+                ph_Num={this.props.ph_Num}
+                token={this.props.token}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

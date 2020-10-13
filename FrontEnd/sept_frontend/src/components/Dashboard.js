@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import Person from './Persons/Person'
+import { connect } from 'react-redux'
 
 import "bootstrap/dist/css/bootstrap.min.css"
+
+import Header from './Layout/Header'
+import Person from './Persons/Person'
+
 import CreateUserButton from './Persons/CreateUserButton';
 import CreateBusinessButton from './Business/CreateBusinessButton';
 import CreateEmployeeButton from './Persons/CreateEmployeeButton';
@@ -13,9 +17,36 @@ import PostBookingsButton from './Post/PostBookingsButton'
 
 
 class Dashboard extends Component {
+
+    constructor(props) {
+        super(props)
+        
+        this.state = {}
+
+        this.storeLoginToken = this.storeLoginToken.bind(this)
+        this.storeLoginToken()
+    }
+
+    storeLoginToken() {
+        this.props.dispatch({
+            type: "LOGIN",
+            payload: {
+                'personIdentifier': this.props.personIdentifier,
+                'address': this.props.address, 
+                'ph_Num': this.props.ph_Num,
+                'token': this.props.token
+            }
+        })
+    }
+
     render() {
         return (
             <div className="Persons">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
@@ -42,8 +73,6 @@ class Dashboard extends Component {
                             <br />
                             <hr />
 
-                            <Person />
-
                         </div>
                     </div>
                 </div>
@@ -51,4 +80,15 @@ class Dashboard extends Component {
         )
     }
 }
-export default Dashboard;
+const mapStateToProps = state => {
+    return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+    return { dispatch }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Dashboard)

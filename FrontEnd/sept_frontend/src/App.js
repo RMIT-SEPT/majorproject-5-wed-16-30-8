@@ -3,7 +3,7 @@ import './App.css';
 import Dashboard from './components/Dashboard';
 import Header from './components/Layout/Header'
 import "bootstrap/dist/css/bootstrap-grid.css"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import AddUser from './components/Persons/AddUser';
 import { Provider } from "react-redux";
 import store from "./store";
@@ -19,6 +19,7 @@ import PersonProfile from './components/Persons/PersonProfile';
 import UpdatePerson from './components/Persons/UpdatePerson';
 
 import Login from './components/Login/Login';
+import SignUp from './components/Persons/SignUp'
 
 
 function App() {
@@ -26,9 +27,11 @@ function App() {
     <Provider store={store}>
       <Router>
         <div>
-          <Header />
+          <Route exact path="/"><Redirect to="/login"/></Route>
+          <Route exact path="/logout"><Redirect to="/login"/></Route>
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/signup" component={AddUser} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/addUser" component={AddUser} />
           <Route path="/addBusiness" component={AddBusiness} />
           <Route path="/addEmployee" component={AddEmployee} />
           <Route path="/booking" component={AddBooking} />
@@ -40,7 +43,7 @@ function App() {
 
           <Route path="/profile" component={PersonProfile} />
           <Route path="/updateUser" component={UpdatePerson} />
-          <Route path="/Login" component={Login} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     </Provider>

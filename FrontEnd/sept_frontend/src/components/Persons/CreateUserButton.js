@@ -5,7 +5,7 @@ const CreatePersonButton = () => {
   return (
     <React.Fragment>
       <Link
-        to="/signup"
+        to="/addUser"
         className="btn btn-lg btn-info">
         Create a User
         </Link>

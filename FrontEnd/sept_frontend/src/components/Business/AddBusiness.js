@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createBusiness } from "../../actions/businessActions";
+import Header from '../Layout/Header'
 
 class AddBusiness extends Component {
     constructor() {
@@ -37,6 +38,11 @@ class AddBusiness extends Component {
     render() {
         return (
             <div className="business">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import DataTable from './DataTables/EmployeesDataTable'
+import Header from '../Layout/Header'
 
 const API = 'http://localhost:8080/api/employee/all';
 
@@ -34,6 +35,11 @@ class EmployeesPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
             <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Employees</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createEmployee } from "../../actions/employeeAction";
+import Header from '../Layout/Header'
 
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
@@ -88,6 +89,11 @@ class AddEmployee extends Component {
         const animatedComponents = makeAnimated();
         return (
             <div className="project">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

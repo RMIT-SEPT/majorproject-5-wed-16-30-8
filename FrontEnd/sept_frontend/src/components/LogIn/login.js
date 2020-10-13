@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import axios from "axios";
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import Dashboard from '../Dashboard'
+import Header from '../Layout/Header'
+
+import Profile from '../Persons/PersonProfile'
+import UsersPost from '../Post/UserPost'
+import EmployeesPost from '../Post/EmployeesPost'
+import BusinessesPost from '../Post/BusinessesPost'
+import BookingsPost from '../Post/BookingsPost'
 
 
 const APIUser = "http://localhost:8080/api/user/login"
@@ -41,7 +48,7 @@ class Login extends Component {
         super();
 
         this.state = {
-            personIdentifier: "",
+            personIdentifier: null,
             password: "",
             address: "",
             ph_num: "",
@@ -86,6 +93,7 @@ class Login extends Component {
         } else {
             this.setState({isLoggedIn: false})
             this.state.counter = 1
+            alert("Incorrect Username or Password")
         }
 
         console.log("is logged in: " + this.state.isLoggedIn)
@@ -103,6 +111,11 @@ class Login extends Component {
         if(!this.state.isLoggedIn) {
             return (
                 <div className="project">
+                    <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 m-auto">
@@ -157,6 +170,52 @@ class Login extends Component {
                                     token={this.state.token}/>
                             )}/>
 
+                            <Route exact path="/logout" render={(props) => (
+                                <Login {...props}/>
+                                    
+                            )}/>
+
+                            <Route exact path="/profile" render={(props) => (
+                                <Profile {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token}/>
+                            )}/>
+                            
+                            <Route exact path="/allUsers" render={(props) => (
+                                <UsersPost {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token}/>
+                            )}/>
+
+                            <Route exact path="/allEmployees" render={(props) => (
+                                <EmployeesPost {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token}/>
+                            )}/>
+
+                            <Route exact path="/allBusinesses" render={(props) => (
+                                <BusinessesPost {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token}/>
+                            )}/>
+
+                            <Route exact path="/allBookings" render={(props) => (
+                                <BookingsPost {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token}/>
+                            )}/>
+                            
+
                             <Redirect to="/dashboard" render={(props) => (
                                 <Dashboard {...props} 
                                     personIdentifier={this.state.personIdentifier}
@@ -168,8 +227,8 @@ class Login extends Component {
                     </Router>
                 </div>
             )
-        } else if(!this.state.isLoggedIn){
-            alert("Incorrect password or username.")
+        }
+        if(!this.state.isLoggedIn) {
             return(
                 <Router>
                     <div className = "Login_Ui">
@@ -195,10 +254,7 @@ class Login extends Component {
         // )}/>
                 
                 //{/*}
-                    // <Route exact path="/logout" render={(props) => (
-                    //     <LoginScreen {...props}/>
-                            
-                    // )}/>
+
             //         <Route exact path="/bookings" render={(props) => (
             //             <BookingScreen {...props}
             //                 id={this.state.id}
