@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard';
+import ViewAll from './components/ViewAll';
 import Header from './components/Layout/Header'
 import "bootstrap/dist/css/bootstrap-grid.css"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
@@ -29,7 +29,7 @@ function App() {
         <div>
           <Route exact path="/"><Redirect to="/login"/></Route>
           <Route exact path="/logout"><Redirect to="/login"/></Route>
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/viewAll" component={ViewAll} />
           <Route path="/signup" component={SignUp} />
           <Route path="/addUser" component={AddUser} />
           <Route path="/addBusiness" component={AddBusiness} />

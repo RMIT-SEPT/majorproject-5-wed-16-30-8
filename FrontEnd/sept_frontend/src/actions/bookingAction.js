@@ -6,7 +6,7 @@ const API = "http://localhost:8080/api/booking"
 export const createBooking = (booking, history) => async dispatch => {
     try {
         const res = await axios.post(API, booking);
-        history.push("/dashboard");
+        history.push("/allBookings");
 
     } catch (err) {
         dispatch({

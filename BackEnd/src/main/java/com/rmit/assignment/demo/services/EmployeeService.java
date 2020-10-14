@@ -47,4 +47,24 @@ public class EmployeeService {
             throw new UserException("Cannot User with ID '" + employeeId + "'. This user does not exist");
         }
     }
+
+    public Employee findByIdentifierPassword(Employee employee){
+
+        Employee loginEmployee = employeeRepository.findByPersonIdentifier(employee.getPersonIdentifier());
+
+        Employee loginEmployee2 = matchNameAndPassword(loginEmployee, employee.getPassword());
+
+        if(loginEmployee2== null){
+            throw new EmployeeException("password not match");
+        }
+        return loginEmployee2;
+    }
+
+    private Employee matchNameAndPassword(Employee employee, String password){
+
+        if(employee.getPassword().equals(password)) {
+            return employee;
+        }
+        return null;
+    }
 }

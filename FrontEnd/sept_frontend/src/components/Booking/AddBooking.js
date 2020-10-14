@@ -14,12 +14,12 @@ class AddBooking extends Component {
         super(props);
         
         this.state = {
-            // bookingIdentifier: "",
             business_name: "",
             booking_date: "",
             businessId: "",
             selectedOption: "",
-            service: ""
+            service: "",
+            personIdentifier: this.props.personIdentifier
         };
 
         this.onChange = this.onChange.bind(this);
@@ -30,11 +30,6 @@ class AddBooking extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
-
-    // setBookingId() {
-    //     let businessCollection = this.fetchData();
-    //     let id = this.idCounter;
-    // }
 
     fetchData = (inputValue, callback) => {
         if(!inputValue) {
@@ -50,7 +45,7 @@ class AddBooking extends Component {
                 .then((data) => {
                     const tempArray = [];
                     data.forEach((element) => {
-                        tempArray.push({ label: element.business_name, value: element.businessId });
+                        tempArray.push({ label: element.business_name, value: element.businessIdentifier });
                     });
                     callback(tempArray);
                 })
@@ -79,32 +74,17 @@ class AddBooking extends Component {
             alert("Please enter a business name")
             return
         }
-        // if(this.state.bookingIdentifier === "") {
-        //     alert("Please enter a booking number")
-        //     return
-        // }
-        // if(this.state.booking_date === "") {
-        //     alert("Please enter a date for your booking")
-        //     return
-        // }
-
-        // this.bookingIdentifier = "bo";
-        // this.idCounter++;
 
         const newBooking = {
-            // booking_identifier: this.state.bookingIdentifier,
-            businessId: this.state.businessId,
+            businessIdentifier: this.state.businessId,
             booking_Date: this.state.booking_date,
-            business_name: this.state.business_name
-
+            business_name: this.state.business_name,
+            personIdentifier: this.state.personIdentifier
         }
 
         console.log(newBooking);
         this.props.createBooking(newBooking, this.props.history);
     }
-
-
-    //drop down box to select Business and Employee and service
 
     render() {
         const animatedComponents = makeAnimated();
@@ -121,13 +101,6 @@ class AddBooking extends Component {
                             <h5 className="display-4 text-center">Booking</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
-                                {/*<div className="form-group">
-                                <h5>Booking id</h5>
-                                    <input type="text" className="form-control form-control-lg " placeholder="Booking ID"
-                                        name="bookingIdentifier"
-                                        value={this.state.bookingIdentifier}
-                                        onChange={this.onChange} />
-                                </div> */}
 
                                 <h5>Business</h5>
 
@@ -143,16 +116,6 @@ class AddBooking extends Component {
                                         components={animatedComponents}
                                     />
                                 </div>
-
-                                {
-                                    // Business_name option box
-                                }
-                                {/*<div className="form-group">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Business name"
-                                        name="business_name"
-                                        value={this.state.business_name}
-                                        onChange={this.onChange} />
-                                </div> */}
                                 
 
                                 <h5>Booking Date</h5>
