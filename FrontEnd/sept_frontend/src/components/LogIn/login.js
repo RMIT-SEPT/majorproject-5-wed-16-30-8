@@ -12,12 +12,12 @@ import BookingsPost from '../Post/BookingsPost'
 
 
 const APIUser = "http://localhost:8080/api/user/login"
-const APIEmployee = "http://localhost:8080/api/employee/"
+const APIEmployee = "http://localhost:8080/api/employee/login"
 const axiosConfig = {headers: {'Content-Type': 'application/json'}}
 
 async function getUserConfirm(personIdentifier, password, isEmployee) {
     if(isEmployee) {
-        return await axios.post(APIUser, {
+        return await axios.post(APIEmployee, {
             personIdentifier: personIdentifier,
             password: password
         }, axiosConfig)
@@ -75,11 +75,6 @@ class Login extends Component {
     async onSubmit(e) {
         e.preventDefault();
 
-        // if(document.getElementById("personIdentifier").value == null || document.getElementById("password").value == null){
-        //     alert("Please enter a username and password.")
-        //     return
-        // }
-
         
         const success = await getUserConfirm(this.state.personIdentifier, this.state.password).then()
         if (success[0]) {
@@ -98,12 +93,6 @@ class Login extends Component {
 
         console.log("is logged in: " + this.state.isLoggedIn)
 
-
-
-        // const loginDetail = {
-        //     personIdentifier: this.state.personIdentifier,
-        //     password: this.state.password
-        // }
     }
 
 
@@ -112,18 +101,18 @@ class Login extends Component {
             return (
                 <div className="project">
                     <Header 
-                    personIdentifier={this.props.personIdentifier}
-                    address={this.props.address}
-                    ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
+                        personIdentifier={this.props.personIdentifier}
+                        address={this.props.address}
+                        ph_Num={this.props.ph_Num}
+                        token={this.props.token}/>
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-8 m-auto">
-                                <h5 className="display-4 text-center">LOGINNNNNNNNNNNNNNNNNNNNnn</h5>
+                            <div className="col-md-offset-4 m-auto">
+                                <h5 className="display-4 text-center">Login</h5>
                                 <hr />
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group">
-                                        <input type="text" className="form-control form-control-lg" placeholder="Username"
+                                        <input type="text" className="form-control-lg" placeholder="Username"
                                             // disabled 
                                             name="personIdentifier"
                                             value={this.state.personIdentifier}
@@ -131,7 +120,7 @@ class Login extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <input type="password" className="form-control form-control-lg " placeholder="password"
+                                        <input type="password" className="form-control-lg " placeholder="password"
                                             name="password"
                                             value={this.state.password}
                                             onChange={this.onChange} />
@@ -143,7 +132,7 @@ class Login extends Component {
                                             type="checkbox"
                                             defaultChecked={this.state.isEmployee}
                                             onChange={this.handleChange}
-                                            />        Are You An Employee sir?
+                                            />   {"<-- Are You An Employee?"}
                                         </label>    
                                     </div>
 
@@ -172,7 +161,6 @@ class Login extends Component {
 
                             <Route exact path="/logout" render={(props) => (
                                 <Login {...props}/>
-                                    
                             )}/>
 
                             <Route exact path="/profile" render={(props) => (
@@ -216,7 +204,7 @@ class Login extends Component {
                             )}/>
                             
 
-                            <Redirect to="/dashboard" render={(props) => (
+                            <Redirect to="/profile" render={(props) => (
                                 <Dashboard {...props} 
                                     personIdentifier={this.state.personIdentifier}
                                     address={this.state.address}
@@ -238,95 +226,6 @@ class Login extends Component {
                 </Router>
             )
         }
-        // <Route exact path="/dashboard" render={(props) => (
-        //     <Dashboard {...props}
-        //         id={this.state.id}
-        //         userName={this.state.userName}
-        //         address={this.state.address}
-        //         phone={this.state.phone}
-        //         userType={this.state.userType}
-        //         token={this.state.token}/> 
-        // )}  />
-
-        // <Route path="/profile" render={(props) => (
-        //     <PersonProfile {...props}/>
-                
-        // )}/>
-                
-                //{/*}
-
-            //         <Route exact path="/bookings" render={(props) => (
-            //             <BookingScreen {...props}
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-            //         <Route exact path="/my_bookings" render={(props) => (
-            //             <MyBookingsScreen {...props}
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-            //         <Route exact path="/cancel" render={(props) => (
-            //             <CancelBookingScreen {...props}
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-            //         <Route exact path="/profile" render={(props) => (
-            //             <ProfileScreen {...props}
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-            //         <Route exact path="/history" render={(props) => (
-            //             <HistoryScreen {...props}
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-            //         <Redirect to="/dashboard" render={(props) => (
-            //             <Dashboard {...props} 
-            //                 id={this.state.id}
-            //                 userName={this.state.userName}
-            //                 address={this.state.address}
-            //                 phone={this.state.phone}
-            //                 userType={this.state.userType}
-            //                 token={this.state.token}/>
-            //         )}/>
-                    
-            //     </div>
-            // </Router>
-            // )
-        // }
-                //*/}
-        // else {
-        //     alert("Incorrect password or username.")
-        //     return(
-        //         <Router>
-        //             <div className = "Login_Ui">
-        //                 <Redirect to= "/login" component={Login}/>
-        //                 <Route path="/login" component={Login} />
-        //             </div>
-        //         </Router>
-        //     )
-        // }
-
 
     }
 }

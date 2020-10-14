@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createBooking } from "../../actions/bookingAction";
-
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
+
+import Header from '../Layout/Header'
 
 const API = "http://localhost:8080/api/business/all"
 
 class AddBooking extends Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        
         this.state = {
             // bookingIdentifier: "",
             business_name: "",
@@ -109,6 +110,11 @@ class AddBooking extends Component {
         const animatedComponents = makeAnimated();
         return (
             <div className="booking">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

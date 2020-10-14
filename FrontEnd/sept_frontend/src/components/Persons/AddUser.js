@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {BrowserRouter as Redirect} from "react-router-dom";
 import { createPerson } from "../../actions/personActions";
 import Header from '../Layout/Header'
+import PersonProfile from './PersonProfile';
 
 
 
@@ -12,7 +14,7 @@ class AddUser extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
+            personIdentifier: null,
             password: "",
             address: "",
             ph_Num: ""
@@ -51,7 +53,7 @@ class AddUser extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Person form</h5>
+                            <h5 className="display-4 text-center">Create User form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
@@ -92,6 +94,14 @@ class AddUser extends Component {
 
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>
+                            
+        <Redirect to="/profile" render={(props) => (
+            <PersonProfile {...props} 
+                personIdentifier={this.state.personIdentifier}
+                address={this.state.address}
+                ph_Num={this.state.ph_Num}
+                token={this.state.token}/>
+        )}/>
                         </div>
                     </div>
                 </div>

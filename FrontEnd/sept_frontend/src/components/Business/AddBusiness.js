@@ -46,7 +46,7 @@ class AddBusiness extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Business form</h5>
+                            <h5 className="display-4 text-center">Create Business form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">

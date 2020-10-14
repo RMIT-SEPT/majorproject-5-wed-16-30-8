@@ -15,7 +15,7 @@ class AddEmployee extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
+            personIdentifier: null,
             businessId: "",
             password: "",
             address: "",
@@ -97,7 +97,7 @@ class AddEmployee extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Employee form</h5>
+                            <h5 className="display-4 text-center">Create Employee form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">

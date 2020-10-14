@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import UpdatePersonButton from './UpdatePersonButton';
+import Header from '../Layout/Header'
 
 const API = "http://localhost:8080/api/user/"
 
@@ -10,15 +11,12 @@ class PersonProfile extends Component {
     // let personIdentifier = "AA11"
 
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            name: "",
-            personIdentifier: "12aa",
-            password: "",
-            address: "",
-            ph_Num: ""
+            personIdentifier: props.personIdentifier
+
         };
     }
 
@@ -43,12 +41,17 @@ class PersonProfile extends Component {
     render() {
         return (
             <div className="wrapper-users">
-                <h2 style={{ paddingLeft: "14%", color: "#185eb9" }}>Users</h2>
+            <Header 
+                personIdentifier={this.props.personIdentifier}
+                address={this.props.address}
+                ph_Num={this.props.ph_Num}
+                token={this.props.token}/>
+                <h2 style={{ paddingLeft: "14%", color: "#185eb9" }}>Welcome {this.state.name} - {this.state.personIdentifier}</h2>
                 <div className="container">
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
                             <tr>
-                                <td>Username</td>
+                                <td><b>Username</b></td>
                             </tr>
 
                         </thead>
@@ -56,18 +59,18 @@ class PersonProfile extends Component {
 
                             <tr>
                                 <td>
-                                    {this.state.personIdentifier}
+                                    {this.props.personIdentifier}
                                 </td>
                             </tr>
 
 
                         </tbody>
                     </table>
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
 
                             <tr>
-                                <td>Name</td>
+                                <td><b>Name</b></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,11 +82,11 @@ class PersonProfile extends Component {
 
                         </tbody>
                     </table>
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
 
                             <tr>
-                                <td>Phone Number</td>
+                                <td><b>Phone No.</b></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,11 +98,11 @@ class PersonProfile extends Component {
 
                         </tbody>
                     </table>
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
 
                             <tr>
-                                <td>Address</td>
+                                <td><b>Address</b></td>
                             </tr>
                         </thead>
                         <tbody>

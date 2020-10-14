@@ -14,7 +14,7 @@ class AddUser extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
+            personIdentifier: null,
             password: "",
             address: "",
             ph_Num: ""

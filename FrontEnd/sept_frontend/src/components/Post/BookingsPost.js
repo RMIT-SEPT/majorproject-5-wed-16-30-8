@@ -46,7 +46,7 @@ class BookingsPost extends Component {
                             <tr>
                                 <td>Booking ID</td>
                                 <td>Business Name</td>
-                                <td>Booking Date</td>
+                                <td>Booking Date (yyyy-mm-dd)</td>
                             </tr>
                         </thead>
                         <tbody>
