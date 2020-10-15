@@ -69,18 +69,10 @@ public class Business {
         this.updated_At = updated_At;
     }
 
-//    public boolean isBlank() {
-//        if (getBusiness_name().isEmpty() || getBusiness_name().equals("")) {
-//            return true;
-//        }
-//        return false;
-//    }
 
     public boolean validIdentifier() {
-        if (getBusinessIdentifier().length() < 4 || getBusinessIdentifier().length() > 5) {
-            return false;
-        }
-        if (!(getBusinessIdentifier().matches("[A-Z,a-z,0-9]+"))) {
+
+        if (!(getBusinessIdentifier().matches("[0-9]+"))) {
             return false;
         }
         return true;

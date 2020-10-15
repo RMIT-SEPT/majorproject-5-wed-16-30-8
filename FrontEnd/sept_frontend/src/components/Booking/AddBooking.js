@@ -16,7 +16,7 @@ class AddBooking extends Component {
             // bookingIdentifier: "",
             business_name: "",
             booking_date: "",
-            businessId: "",
+            businessIdentifier: "",
             selectedOption: "",
             service: ""
         };
@@ -49,7 +49,7 @@ class AddBooking extends Component {
                 .then((data) => {
                     const tempArray = [];
                     data.forEach((element) => {
-                        tempArray.push({ label: element.business_name, value: element.businessId });
+                        tempArray.push({ label: element.business_name, value: element.businessIdentifier });
                     });
                     callback(tempArray);
                 })
@@ -65,7 +65,7 @@ class AddBooking extends Component {
             this.setState({
                 selectedOption,
                 business_name: selectedOption.label,
-                businessId: selectedOption.value
+                businessIdentifier: selectedOption.value
             });
         }
     };
@@ -92,7 +92,7 @@ class AddBooking extends Component {
 
         const newBooking = {
             // booking_identifier: this.state.bookingIdentifier,
-            businessId: this.state.businessId,
+            businessIdentifier: this.state.businessIdentifier,
             booking_Date: this.state.booking_date,
             business_name: this.state.business_name
 
