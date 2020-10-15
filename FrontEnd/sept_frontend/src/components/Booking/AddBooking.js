@@ -67,7 +67,6 @@ class AddBooking extends Component {
     };
 
     onSubmit(e) {
-        //makes it so when it referesh the page will retain the value and infomation 
         e.preventDefault();
 
         if(this.state.business_name === "") {
@@ -94,7 +93,8 @@ class AddBooking extends Component {
                     personIdentifier={this.props.personIdentifier}
                     address={this.props.address}
                     ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

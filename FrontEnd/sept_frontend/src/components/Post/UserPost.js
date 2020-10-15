@@ -39,7 +39,8 @@ class PersonsPost extends Component {
                     personIdentifier={this.props.personIdentifier}
                     address={this.props.address}
                     ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
             <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Users</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">

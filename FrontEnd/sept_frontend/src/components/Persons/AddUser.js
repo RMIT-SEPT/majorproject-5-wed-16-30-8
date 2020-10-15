@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {BrowserRouter as Redirect} from "react-router-dom";
 import { createPerson } from "../../actions/personActions";
 import Header from '../Layout/Header'
-import PersonProfile from './PersonProfile';
+import Login from '../Login/Login'
 
 
 
@@ -49,7 +49,8 @@ class AddUser extends Component {
                 personIdentifier={this.props.personIdentifier}
                 address={this.props.address}
                 ph_Num={this.props.ph_Num}
-                token={this.props.token}/>
+                token={this.props.token}
+                isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
@@ -95,8 +96,8 @@ class AddUser extends Component {
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>
                             
-        <Redirect to="/profile" render={(props) => (
-            <PersonProfile {...props} 
+        <Redirect to="/login" render={(props) => (
+            <Login {...props} 
                 personIdentifier={this.state.personIdentifier}
                 address={this.state.address}
                 ph_Num={this.state.ph_Num}

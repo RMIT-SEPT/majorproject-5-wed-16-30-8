@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import ViewAll from './components/ViewAll';
-import Header from './components/Layout/Header'
 import "bootstrap/dist/css/bootstrap-grid.css"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import AddUser from './components/Persons/AddUser';
@@ -16,7 +15,6 @@ import EmployeesPost from './components/Post/EmployeesPost'
 import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
 import PersonProfile from './components/Persons/PersonProfile';
-import UpdatePerson from './components/Persons/UpdatePerson';
 
 import Login from './components/Login/Login';
 import SignUp from './components/Persons/SignUp'
@@ -42,7 +40,6 @@ function App() {
           <Route path="/allBookings" component={BookingsPost} />
 
           <Route path="/profile" component={PersonProfile} />
-          <Route path="/updateUser" component={UpdatePerson} />
           <Route path="/login" component={Login} />
         </div>
       </Router>

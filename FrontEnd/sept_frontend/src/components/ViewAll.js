@@ -45,42 +45,65 @@ class ViewAll extends Component {
     render() {
         if(this.props.isEmployee) {
             return (
-                <div>
-                    <h2>AJKSDFNSDFJHk</h2>
-                </div>
-            )
-        }
-        return (
-            <div className="Persons">
-                <Header 
-                    personIdentifier={this.props.personIdentifier}
-                    address={this.props.address}
-                    ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h1 className="display-4 text-center">View</h1>
-                            <br />
-
-                            <PostUsersButton />
-                            <br/>
-                            <br/>
-                            <PostEmployeesButton />
-                            <br/>
-                            <br/>
-                            <PostBusinessesButton />
-                            <br/>
-                            <br/>
-                            <PostBookingsButton />
-                            <br />
-                            <hr />
-
+                <div className="Persons">
+                    <Header 
+                        personIdentifier={this.props.personIdentifier}
+                        address={this.props.address}
+                        ph_Num={this.props.ph_Num}
+                        token={this.props.token}
+                        isEmployee={this.props.isEmployee}
+                        businessIdentifier={this.props.businessIdentifier}/>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h1 className="display-4 text-center">View - You're an employee</h1>
+                                <br />
+    
+                                <PostUsersButton />
+                                <br/>
+                                <br/>
+                                <PostEmployeesButton />
+                                <br/>
+                                <br/>
+                                <PostBookingsButton />
+                                <br />
+                                <hr />
+    
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className="Persons">
+                    <Header 
+                        personIdentifier={this.props.personIdentifier}
+                        address={this.props.address}
+                        ph_Num={this.props.ph_Num}
+                        token={this.props.token}
+                        isEmployee={this.props.isEmployee}
+                        businessIdentifier={this.props.businessIdentifier}/>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h1 className="display-4 text-center">View</h1>
+                                <br />
+    
+                                <PostBusinessesButton />
+                                <br/>
+                                <br/>
+                                <PostBookingsButton />
+                                <br />
+                                <hr />
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        
     }
 }
 const mapStateToProps = state => {

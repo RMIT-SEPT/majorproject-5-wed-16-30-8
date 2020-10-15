@@ -16,6 +16,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="booking_identifier")
     private int bookingIdentifier;
+
     @Column(name="business_identifier")
     private String businessIdentifier;
 

@@ -10,7 +10,6 @@ import EmployeesPost from '../Post/EmployeesPost'
 import BusinessesPost from '../Post/BusinessesPost'
 import BookingsPost from '../Post/BookingsPost'
 import AddBooking from '../Booking/AddBooking';
-import UpdatePerson from '../Persons/UpdatePerson';
 
 
 const APIUser = "http://localhost:8080/api/user/login"
@@ -54,10 +53,10 @@ class Login extends Component {
             password: "",
             address: "",
             ph_num: "",
-            isEmployee: true,
+            isEmployee: false,
             token: null,
             isLoggedIn: false,
-            businessIdentifier: '',
+            businessIdentifier: null,
             counter: 0
         };
         this.onChange = this.onChange.bind(this);
@@ -90,7 +89,7 @@ class Login extends Component {
                 this.setState({address: success[1].data["address"]})
                 this.setState({ph_Num: success[1].data["phone"]})
                 this.setState({token: success[1].data["token"]})
-                this.setState({businessIdentifier: success[1].data["businessIdentifier"]})
+                this.setState({businessIdentifier: success[1].data["businessId"]})
                 this.setState({isLoggedIn: true})
             } else {
                 this.setState({isLoggedIn: false})
@@ -128,7 +127,9 @@ class Login extends Component {
                         personIdentifier={this.props.personIdentifier}
                         address={this.props.address}
                         ph_Num={this.props.ph_Num}
-                        token={this.props.token}/>
+                        token={this.props.token}
+                        isEmployee={this.state.isEmployee}
+                        businessIdentifier={this.state.businessIdentifier}/>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-offset-4 m-auto">
@@ -168,20 +169,19 @@ class Login extends Component {
                 </div>
             )
         }
-        console.log("is logged in: " + this.state.isLoggedIn)
         if(this.state.isLoggedIn) {
             return(
                 <div>
                     <Router>
                         <div>
-
                             <Route exact path="/viewAll" render={(props) => (
                                 <ViewAll {...props}
                                     personIdentifier={this.state.personIdentifier}
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
 
                             <Route exact path="/logout" render={(props) => (
@@ -194,16 +194,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
-                            )}/>
-
-                            <Route exact path="/updatePerson" render={(props) => (
-                                <UpdatePerson {...props}
-                                    personIdentifier={this.state.personIdentifier}
-                                    address={this.state.address}
-                                    ph_Num={this.state.ph_Num}
-                                    token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
                             
                             <Route exact path="/allUsers" render={(props) => (
@@ -212,7 +204,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
 
                             <Route exact path="/allEmployees" render={(props) => (
@@ -221,7 +214,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
 
                             <Route exact path="/allBusinesses" render={(props) => (
@@ -230,7 +224,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
 
                             <Route exact path="/allBookings" render={(props) => (
@@ -239,7 +234,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
 
                             <Route exact path="/booking" render={(props) => (
@@ -248,7 +244,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
                             
 
@@ -258,7 +255,8 @@ class Login extends Component {
                                     address={this.state.address}
                                     ph_Num={this.state.ph_Num}
                                     token={this.state.token}
-                                    isEmployee={this.state.isEmployee}/>
+                                    isEmployee={this.state.isEmployee}
+                                    businessIdentifier={this.state.businessIdentifier}/>
                             )}/>
                         </div>
                     </Router>

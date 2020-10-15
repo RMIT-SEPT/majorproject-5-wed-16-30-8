@@ -4,6 +4,7 @@ package com.rmit.assignment.demo.services;
 import com.rmit.assignment.demo.Repositories.EmployeeRepository;
 import com.rmit.assignment.demo.exceptions.EmployeeException;
 import com.rmit.assignment.demo.exceptions.UserException;
+import com.rmit.assignment.demo.model.Booking;
 import com.rmit.assignment.demo.model.Employee;
 import com.rmit.assignment.demo.model.Person;
 import com.rmit.assignment.demo.model.User;
@@ -37,6 +38,10 @@ public class EmployeeService {
 
     public Iterable<Employee> findAllEmployee() {
         return employeeRepository.findAll();
+    }
+
+    public Iterable<Employee> findByBusinessId(String businessId) {
+        return employeeRepository.findAllByBusinessId(businessId);
     }
 
     public void deleteEmployeeByIdentifier(String employeeId) {

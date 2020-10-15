@@ -31,8 +31,25 @@ public class BookingService {
         return booking;
     }
 
+    public Booking findByBusinessIdentifier(String businessIdentifier) {
+        Booking booking = bookingRepository.findByBusinessIdentifier(businessIdentifier);
+
+        if (booking == null) {
+            throw new BookingException("Person ID '" + businessIdentifier + "' does not exist");
+        }
+        return booking;
+    }
+
     public Iterable<Booking> findAllBooking() {
         return bookingRepository.findAll();
+    }
+
+    public Iterable<Booking> findAllBooking(String businessIdentifier) {
+        return bookingRepository.findAllByBusinessIdentifier(businessIdentifier);
+    }
+
+    public Iterable<Booking> findAllBookingByPerson(String personIdentifier) {
+        return bookingRepository.findAllByPersonIdentifier(personIdentifier);
     }
 
     public void deleteBooking(String bookingId) {

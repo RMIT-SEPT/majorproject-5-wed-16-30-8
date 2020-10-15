@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import UpdatePersonButton from './UpdatePersonButton';
 import Header from '../Layout/Header'
 
 const API = "http://localhost:8080/api/user/"
@@ -16,7 +15,7 @@ class PersonProfile extends Component {
         super(props);
 
         this.state = {
-            personIdentifier: props.personIdentifier,
+            personIdentifier: this.props.personIdentifier,
             name: '',
             password: '',
             address: '',
@@ -29,6 +28,7 @@ class PersonProfile extends Component {
         if(this.state.isEmployee) {
             axios.get(APIEmployee + this.state.personIdentifier)
             .then(res => {
+                console.log("PersonProfile for employee: " + res.data.businessId)
                 this.setState({
                     name: res.data.name,
                     personIdentifier: res.data.personIdentifier,
@@ -68,7 +68,9 @@ class PersonProfile extends Component {
                     personIdentifier={this.props.personIdentifier}
                     address={this.props.address}
                     ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}
+                    businessIdentifier={this.props.businessIdentifier}/>
                     <h2 style={{ paddingLeft: "14%", color: "#185eb9" }}>Welcome {this.state.name} - {this.state.personIdentifier}</h2>
                     <div className="container">
                         <table className="table table-striped">
@@ -154,12 +156,10 @@ class PersonProfile extends Component {
 
                         </tbody>
                     </table>
-    
-                        <UpdatePersonButton/>
                     </div>
                 </div>
             )
-        } else {
+        } else if(this.props.personIdentifier != null){
             return (
                 <div className="wrapper-users">
                 <Header 
@@ -237,9 +237,22 @@ class PersonProfile extends Component {
     
                             </tbody>
                         </table>
-    
-                        <UpdatePersonButton/>
                     </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="profile_screen_editprofile" id="profile_screen_editprofile">
+                    <Header 
+                        personIdentifier={this.props.personIdentifier}
+                        address={this.props.address}
+                        ph_Num={this.props.ph_Num}
+                        token={this.props.token}
+                        businessIdentifier={this.props.businessIdentifier}
+                        isEmployee={this.props.isEmployee}/>
+                    <br/>
+                    <h2 style={{ paddingLeft: "14%", color: "#185eb9" }}>Please log in to edit your profile.</h2>
+                    <br/><br/>
                 </div>
             )
         }
