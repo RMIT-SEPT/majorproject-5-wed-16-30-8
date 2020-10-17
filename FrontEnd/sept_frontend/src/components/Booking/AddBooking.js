@@ -2,23 +2,24 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createBooking } from "../../actions/bookingAction";
-
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
 
-const API = "http://localhost:8080/api/business/all"
+import Header from '../Layout/Header'
+
+const API = "http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all"
 
 class AddBooking extends Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        
         this.state = {
-            // bookingIdentifier: "",
             business_name: "",
             booking_date: "",
             businessIdentifier: "",
             selectedOption: "",
-            service: ""
+            service: "",
+            personIdentifier: this.props.personIdentifier
         };
 
         this.onChange = this.onChange.bind(this);
@@ -29,11 +30,6 @@ class AddBooking extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
-
-    // setBookingId() {
-    //     let businessCollection = this.fetchData();
-    //     let id = this.idCounter;
-    // }
 
     fetchData = (inputValue, callback) => {
         if(!inputValue) {
@@ -71,57 +67,42 @@ class AddBooking extends Component {
     };
 
     onSubmit(e) {
-        //makes it so when it referesh the page will retain the value and infomation 
         e.preventDefault();
 
         if(this.state.business_name === "") {
             alert("Please enter a business name")
             return
         }
-        // if(this.state.bookingIdentifier === "") {
-        //     alert("Please enter a booking number")
-        //     return
-        // }
-        // if(this.state.booking_date === "") {
-        //     alert("Please enter a date for your booking")
-        //     return
-        // }
-
-        // this.bookingIdentifier = "bo";
-        // this.idCounter++;
 
         const newBooking = {
             // booking_identifier: this.state.bookingIdentifier,
             businessIdentifier: this.state.businessIdentifier,
+            // businessIdentifier: this.state.businessId,
             booking_Date: this.state.booking_date,
-            business_name: this.state.business_name
-
+            business_name: this.state.business_name,
+            personIdentifier: this.state.personIdentifier
         }
 
         console.log(newBooking);
         this.props.createBooking(newBooking, this.props.history);
     }
 
-
-    //drop down box to select Business and Employee and service
-
     render() {
         const animatedComponents = makeAnimated();
         return (
             <div className="booking">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
                             <h5 className="display-4 text-center">Booking</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
-                                {/*<div className="form-group">
-                                <h5>Booking id</h5>
-                                    <input type="text" className="form-control form-control-lg " placeholder="Booking ID"
-                                        name="bookingIdentifier"
-                                        value={this.state.bookingIdentifier}
-                                        onChange={this.onChange} />
-                                </div> */}
 
                                 <h5>Business</h5>
 
@@ -137,16 +118,6 @@ class AddBooking extends Component {
                                         components={animatedComponents}
                                     />
                                 </div>
-
-                                {
-                                    // Business_name option box
-                                }
-                                {/*<div className="form-group">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Business name"
-                                        name="business_name"
-                                        value={this.state.business_name}
-                                        onChange={this.onChange} />
-                                </div> */}
                                 
 
                                 <h5>Booking Date</h5>

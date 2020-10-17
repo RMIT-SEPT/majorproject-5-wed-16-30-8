@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class BookingDataTable extends Component {
 
     render() {
-        fetch('http://localhost:8080/api/business/' + this.props.obj.businessIdentifier, {
+        fetch('http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/' + this.props.obj.businessIdentifier, {
                     method: "GET",
                 })
                 .then((resp) => {

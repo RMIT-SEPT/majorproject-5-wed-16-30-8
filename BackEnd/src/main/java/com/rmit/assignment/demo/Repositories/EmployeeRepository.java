@@ -14,4 +14,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 //    @Override
     @Query("from Employee")
     Iterable<Employee> findAll();
+    Iterable<Employee> findAllByBusinessId(String businessId);
+
 }

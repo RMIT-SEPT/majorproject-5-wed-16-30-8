@@ -4,6 +4,7 @@ package com.rmit.assignment.demo.services;
 import com.rmit.assignment.demo.Repositories.EmployeeRepository;
 import com.rmit.assignment.demo.exceptions.EmployeeException;
 import com.rmit.assignment.demo.exceptions.UserException;
+import com.rmit.assignment.demo.model.Booking;
 import com.rmit.assignment.demo.model.Employee;
 import com.rmit.assignment.demo.model.Person;
 import com.rmit.assignment.demo.model.User;
@@ -39,6 +40,10 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public Iterable<Employee> findByBusinessId(String businessId) {
+        return employeeRepository.findAllByBusinessId(businessId);
+    }
+
     public void deleteEmployeeByIdentifier(String employeeId) {
         try {
             Employee employee = employeeRepository.findByPersonIdentifier(employeeId);
@@ -46,5 +51,25 @@ public class EmployeeService {
         } catch (Exception e) {
             throw new UserException("Cannot User with ID '" + employeeId + "'. This user does not exist");
         }
+    }
+
+    public Employee findByIdentifierPassword(Employee employee){
+
+        Employee loginEmployee = employeeRepository.findByPersonIdentifier(employee.getPersonIdentifier());
+
+        Employee loginEmployee2 = matchNameAndPassword(loginEmployee, employee.getPassword());
+
+        if(loginEmployee2== null){
+            throw new EmployeeException("password not match");
+        }
+        return loginEmployee2;
+    }
+
+    private Employee matchNameAndPassword(Employee employee, String password){
+
+        if(employee.getPassword().equals(password)) {
+            return employee;
+        }
+        return null;
     }
 }

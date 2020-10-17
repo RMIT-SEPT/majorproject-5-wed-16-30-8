@@ -7,7 +7,7 @@ import Header from '../Layout/Header'
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
 
-const API = 'http://localhost:8080/api/business/all'
+const API = 'http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all'
 
 class AddEmployee extends Component {
     constructor() {
@@ -15,7 +15,7 @@ class AddEmployee extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
+            personIdentifier: null,
             businessId: "",
             password: "",
             address: "",
@@ -93,11 +93,12 @@ class AddEmployee extends Component {
                     personIdentifier={this.props.personIdentifier}
                     address={this.props.address}
                     ph_Num={this.props.ph_Num}
-                    token={this.props.token}/>
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Employee form</h5>
+                            <h5 className="display-4 text-center">Create Employee form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">

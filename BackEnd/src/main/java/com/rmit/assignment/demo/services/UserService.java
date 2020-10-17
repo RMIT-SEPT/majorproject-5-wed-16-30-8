@@ -71,6 +71,7 @@ public class UserService {
             if(user.getPassword().equals(password)){
                 return user;
             }
+            System.out.println("\n\n\nEMPLOYEE NOT FOUND\n\n\n");
             return null;
         }
 
