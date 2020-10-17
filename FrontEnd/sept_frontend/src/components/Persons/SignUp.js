@@ -45,12 +45,12 @@ class AddUser extends Component {
     render() {
         return (
             <div className="persons">
-                <Header 
-                personIdentifier={this.props.personIdentifier}
-                address={this.props.address}
-                ph_Num={this.props.ph_Num}
-                token={this.props.token}
-                isEmployee={this.props.isEmployee}/>
+                <Header
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee} />
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

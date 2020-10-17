@@ -8,6 +8,7 @@ import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
 
 const API = 'http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all'
+// const API = "http://localhost:8080/api/business/all"
 
 class AddEmployee extends Component {
     constructor() {
@@ -109,7 +110,6 @@ class AddEmployee extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control form-control-lg" placeholder="Unique Employee ID"
-                                        // disabled 
                                         name="personIdentifier"
                                         value={this.state.personIdentifier}
                                         onChange={this.onChange} />
@@ -132,7 +132,6 @@ class AddEmployee extends Component {
 
                                 <div className="form-group">
                                     <input type="" className="form-control form-control-lg" placeholder="Unique Business ID"
-                                        // disabled 
                                         name="businessIdentifier"
                                         value={this.state.businessIdentifier}
                                         />

@@ -5,6 +5,7 @@ import DataTable from './DataTables/BusinessDataTable'
 import Header from '../Layout/Header'
 
 const API = 'http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all';
+// const API = "http://localhost:8080/api/business/all"
 
 
 class BusinessesPost extends Component {
@@ -35,13 +36,13 @@ class BusinessesPost extends Component {
     render() {
         return (
             <div className="wrapper-users">
-                <Header 
+                <Header
                     personIdentifier={this.props.personIdentifier}
                     address={this.props.address}
                     ph_Num={this.props.ph_Num}
                     token={this.props.token}
-                    isEmployee={this.props.isEmployee}/>
-            <h2 style={{paddingLeft: "14%", color: "#185eb9"}}>Businesses</h2>
+                    isEmployee={this.props.isEmployee} />
+                <h2 style={{ paddingLeft: "14%", color: "#185eb9" }}>Businesses</h2>
                 <div className="container">
                     <table className="table table-striped table-dark">
                         <thead className="thead-dark">

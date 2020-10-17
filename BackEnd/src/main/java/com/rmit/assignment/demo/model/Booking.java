@@ -4,8 +4,6 @@ package com.rmit.assignment.demo.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -40,6 +38,10 @@ public class Booking {
 
     private String service;
     private String employee_id;
+
+    public Booking() {
+
+    }
 
     public Booking(int bookingIdentifier, String business_name, Date booking_Date, String employee_id) {
     }

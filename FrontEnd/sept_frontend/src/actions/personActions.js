@@ -4,6 +4,7 @@ import { GET_ERRORS } from "./types";
 export const createPerson = (person, history) => async dispatch => {
     try {
         const res = await axios.post("http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/user", person);
+        // const res = await axios.post("http://localhost:8080/api/user", person);
         history.push("/login");
 
     } catch (err) {

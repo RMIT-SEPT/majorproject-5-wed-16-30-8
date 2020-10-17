@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {BrowserRouter as Redirect} from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 import { createPerson } from "../../actions/personActions";
 import Header from '../Layout/Header'
-import Login from '../LogIn/login'
-
+import Login from '../Login/Login'
 
 
 class AddUser extends Component {
@@ -45,12 +44,12 @@ class AddUser extends Component {
     render() {
         return (
             <div className="persons">
-                <Header 
-                personIdentifier={this.props.personIdentifier}
-                address={this.props.address}
-                ph_Num={this.props.ph_Num}
-                token={this.props.token}
-                isEmployee={this.props.isEmployee}/>
+                <Header
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee} />
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
@@ -65,7 +64,6 @@ class AddUser extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control form-control-lg" placeholder="Username"
-                                        // disabled 
                                         name="personIdentifier"
                                         value={this.state.personIdentifier}
                                         onChange={this.onChange} />
@@ -95,14 +93,14 @@ class AddUser extends Component {
 
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>
-                            
-        <Redirect to="/login" render={(props) => (
-            <Login {...props} 
-                personIdentifier={this.state.personIdentifier}
-                address={this.state.address}
-                ph_Num={this.state.ph_Num}
-                token={this.state.token}/>
-        )}/>
+
+                            <Redirect to="/login" render={(props) => (
+                                <Login {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token} />
+                            )} />
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import AsyncSelect from 'react-select/async';
 import Header from '../Layout/Header'
 
 const API = "http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all"
+// const API = "http://localhost:8080/api/business/all"
 
 class AddBooking extends Component {
     constructor(props) {
@@ -75,9 +76,7 @@ class AddBooking extends Component {
         }
 
         const newBooking = {
-            // booking_identifier: this.state.bookingIdentifier,
             businessIdentifier: this.state.businessIdentifier,
-            // businessIdentifier: this.state.businessId,
             booking_Date: this.state.booking_date,
             business_name: this.state.business_name,
             personIdentifier: this.state.personIdentifier

@@ -1,15 +1,11 @@
 package com.rmit.assignment.demo.model;
 
-
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
 @Table(name="user")
-//@DiscriminatorValue(value = "USER")
 public class User extends Person {
 
 

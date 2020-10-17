@@ -16,7 +16,7 @@ import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
 import PersonProfile from './components/Persons/PersonProfile';
 
-import Login from './components/LogIn/login';
+import Login from './components/Login/Login'
 import SignUp from './components/Persons/SignUp'
 
 
@@ -25,8 +25,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <div>
-          <Route exact path="/"><Redirect to="/login"/></Route>
-          <Route exact path="/logout"><Redirect to="/login"/></Route>
+          <Route exact path="/"><Redirect to="/login" /></Route>
+          <Route exact path="/logout"><Redirect to="/login" /></Route>
           <Route path="/viewAll" component={ViewAll} />
           <Route path="/signup" component={SignUp} />
           <Route path="/addUser" component={AddUser} />

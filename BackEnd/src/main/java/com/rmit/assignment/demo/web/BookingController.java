@@ -5,16 +5,12 @@ import com.rmit.assignment.demo.model.Booking;
 import com.rmit.assignment.demo.services.BookingService;
 import com.rmit.assignment.demo.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
@@ -41,20 +37,9 @@ public class BookingController {
         return new ResponseEntity<Booking>(booking, HttpStatus.OK);
     }
 
-//    @GetMapping("/business/{businessIdentifier}")
-//    public List<Booking> getBookingByBusinessId(@PathVariable String businessIdentifier) {
-//        Booking booking = bookingService.findByBusinessIdentifier(businessIdentifier);
-//        List ret = new ArrayList<Booking>();
-//        ret.add(new ResponseEntity<Booking>(booking, HttpStatus.OK));
-////        restTemplate
-////                .exchange("URI", HttpMethod.GET, entity,  new ParameterizedTypeReference<List<Booking>>();
-//        return ret;
-////        return new ResponseEntity<Booking>(booking, HttpStatus.OK);
-//    }
-
     @GetMapping("/business/{businessIdentifier}")
-    public Iterable<Booking> getAllPersons(@PathVariable String businessIdentifier) {
-        return bookingService.findAllBooking(businessIdentifier);
+    public Iterable<Booking> getAllBookingsByBusiness(@PathVariable String businessIdentifier) {
+        return bookingService.findAllBookingByBusiness(businessIdentifier);
     }
 
     @GetMapping("/user/{personIdentifier}")
@@ -63,7 +48,7 @@ public class BookingController {
     }
 
     @GetMapping("/all")
-    public Iterable<Booking> getAllPersons() {
+    public Iterable<Booking> getAllBookings() {
         return bookingService.findAllBooking();
     }
 

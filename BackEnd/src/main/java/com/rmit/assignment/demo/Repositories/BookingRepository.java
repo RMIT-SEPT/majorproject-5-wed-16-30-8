@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface BookingRepository extends CrudRepository<Booking, Long> {
     Booking findByBookingIdentifier(int booking_id);
     Booking findByBusinessIdentifier(String businessIdentifier);
+    Booking findByPersonIdentifier(String personIdentifier);
 
     @Override
     Iterable<Booking> findAll();

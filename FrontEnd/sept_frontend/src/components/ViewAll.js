@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
-import {BrowserRouter as Redirect} from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Header from './Layout/Header'
-
-import CreateUserButton from './Persons/CreateUserButton';
-import CreateBusinessButton from './Business/CreateBusinessButton';
-import CreateEmployeeButton from './Persons/CreateEmployeeButton';
-
 import PostUsersButton from './Post/PostUsersButton'
 import PostEmployeesButton from './Post/PostEmployeesButton'
 import PostBusinessesButton from './Post/PostBusinessesButton'
@@ -21,7 +14,7 @@ class ViewAll extends Component {
 
     constructor(props) {
         super(props)
-        
+
         this.state = {
             personIdentifier: this.props.personIdentifier
         }
@@ -35,7 +28,7 @@ class ViewAll extends Component {
             type: "LOGIN",
             payload: {
                 'personIdentifier': this.props.personIdentifier,
-                'address': this.props.address, 
+                'address': this.props.address,
                 'ph_Num': this.props.ph_Num,
                 'token': this.props.token
             }
@@ -43,32 +36,32 @@ class ViewAll extends Component {
     }
 
     render() {
-        if(this.props.isEmployee) {
+        if (this.props.isEmployee) {
             return (
                 <div className="Persons">
-                    <Header 
+                    <Header
                         personIdentifier={this.props.personIdentifier}
                         address={this.props.address}
                         ph_Num={this.props.ph_Num}
                         token={this.props.token}
                         isEmployee={this.props.isEmployee}
-                        businessIdentifier={this.props.businessIdentifier}/>
+                        businessIdentifier={this.props.businessIdentifier} />
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <h1 className="display-4 text-center">View - You're an employee</h1>
+                                <h1 className="display-4 text-center">View</h1>
                                 <br />
-    
+
                                 <PostUsersButton />
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 <PostEmployeesButton />
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 <PostBookingsButton />
                                 <br />
                                 <hr />
-    
+
                             </div>
                         </div>
                     </div>
@@ -77,33 +70,33 @@ class ViewAll extends Component {
         } else {
             return (
                 <div className="Persons">
-                    <Header 
+                    <Header
                         personIdentifier={this.props.personIdentifier}
                         address={this.props.address}
                         ph_Num={this.props.ph_Num}
                         token={this.props.token}
                         isEmployee={this.props.isEmployee}
-                        businessIdentifier={this.props.businessIdentifier}/>
+                        businessIdentifier={this.props.businessIdentifier} />
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
                                 <h1 className="display-4 text-center">View</h1>
                                 <br />
-    
+
                                 <PostBusinessesButton />
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 <PostBookingsButton />
                                 <br />
                                 <hr />
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
             )
         }
-        
+
     }
 }
 const mapStateToProps = state => {

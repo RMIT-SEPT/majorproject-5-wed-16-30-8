@@ -14,6 +14,9 @@ import AddBooking from '../Booking/AddBooking';
 
 const APIUser = "http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/user/login"
 const APIEmployee = "http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/employee/login"
+// const APIUser = "http://localhost:8080/api/user/login"
+// const APIEmployee = "http://localhost:8080/api/employee/login"
+
 const axiosConfig = {headers: {'Content-Type': 'application/json'}}
 
 async function getUserConfirm(personIdentifier, password, isEmployee) {
@@ -138,7 +141,6 @@ class Login extends Component {
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group">
                                         <input type="text" className="form-control-lg" placeholder="Username"
-                                            // disabled 
                                             name="personIdentifier"
                                             value={this.state.personIdentifier}
                                             onChange={this.onChange} />

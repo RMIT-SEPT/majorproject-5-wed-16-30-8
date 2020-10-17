@@ -18,9 +18,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    //Check if username exist in the system
-
-
 
     public User saveOrUpdateUser(User user) {
         try {

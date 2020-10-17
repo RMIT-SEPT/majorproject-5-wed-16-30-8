@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
+const API = 'http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/'
+// const API = "http://localhost:8080/api/business/"
+
 class BookingDataTable extends Component {
 
     render() {
-        fetch('http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/' + this.props.obj.businessIdentifier, {
+        fetch(API + this.props.obj.businessIdentifier, {
                     method: "GET",
                 })
                 .then((resp) => {

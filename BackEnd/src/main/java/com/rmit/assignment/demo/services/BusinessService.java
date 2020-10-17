@@ -4,7 +4,6 @@ import com.rmit.assignment.demo.Repositories.BusinessRepository;
 import com.rmit.assignment.demo.exceptions.BusinessException;
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.Business;
-import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,14 +40,6 @@ public class BusinessService {
         return businessRepository.findAll();
     }
 
-//    public void deleteUserByIdentifier(String userId) {
-//        try {
-//            Person user = userRepository.findByPersonIdentifier(userId.toUpperCase());
-//            userRepository.delete(user);
-//        } catch (Exception e) {
-//            throw new UserException("Cannot User with ID '" + userId + "'. This user does not exist");
-//        }
-//    }
     public void deleteBusiness(String businessId){
         try{
             Business business = businessRepository.findByBusinessIdentifier(businessId);

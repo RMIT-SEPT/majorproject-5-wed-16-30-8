@@ -5,8 +5,6 @@ package com.rmit.assignment.demo.services;
 import com.rmit.assignment.demo.Repositories.BusinessRepository;
 import com.rmit.assignment.demo.exceptions.BusinessException;
 import com.rmit.assignment.demo.model.Business;
-import com.rmit.assignment.demo.services.BusinessService;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

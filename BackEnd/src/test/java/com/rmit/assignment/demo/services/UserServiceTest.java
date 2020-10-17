@@ -1,15 +1,11 @@
 package com.rmit.assignment.demo.services;
 
-
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.User;
-import com.rmit.assignment.demo.services.UserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

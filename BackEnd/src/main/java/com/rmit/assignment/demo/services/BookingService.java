@@ -5,7 +5,6 @@ import com.rmit.assignment.demo.Repositories.BookingRepository;
 import com.rmit.assignment.demo.exceptions.BookingException;
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.Booking;
-import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +43,7 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    public Iterable<Booking> findAllBooking(String businessIdentifier) {
+    public Iterable<Booking> findAllBookingByBusiness(String businessIdentifier) {
         return bookingRepository.findAllByBusinessIdentifier(businessIdentifier);
     }
 
