@@ -9,50 +9,57 @@ import java.util.Date;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="person")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@MappedSuperclass
 @DiscriminatorColumn(name = "ACCOUNT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name="id")
+//    private Long id;
     @Size(min = 3, max = 20, message = "Please enter 3 to 20 characters")
     @NotBlank(message = "Person name is required")
+    @Column(name="name")
     private String name;
+    @Id
     @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
+    @Size(min = 4, max = 20, message = "please enter 4 to 5 characters")
     @Column(updatable = false, unique = true)
+    //username
     private String personIdentifier;
-    @NotBlank(message = "Description is required")
-    private String desc;
-
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date start_date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(name="created_At")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date created_At;
+    @Column(name="updated_At")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date updated_At;
+    @Column(name="end_date")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date end_date;
 
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date update_At;
+    @Column(name="address")
+    private String address;
+    @Column(name="ph_Num")
+    private String ph_Num;
+    @Column(name="password")
+    private String password;
 
-    public Person(long id, String name, String personIdentifier, String desc) {
-        this.id = id;
+    public Person(String name, String personIdentifier, String password, String ph_Num,String address, Date created_At) {
         this.name = name;
         this.personIdentifier = personIdentifier;
-        this.desc = desc;
+        this.password=password;
+        this.ph_Num=ph_Num;
+        this.address=address;
+        this.created_At=created_At;
     }
 
     public Person() {
-
     }
 
-    public Date getStart_date() {
-        return start_date;
-    }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
-    }
 
     public Date getEnd_date() {
         return end_date;
@@ -62,13 +69,30 @@ public abstract class Person {
         this.end_date = end_date;
     }
 
-    public Long getId() {
-        return id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getPh_Num() {
+        return ph_Num;
+    }
+
+    public void setPh_Num(String ph_Num) {
+        this.ph_Num = ph_Num;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getName() {
         return name;
@@ -86,14 +110,6 @@ public abstract class Person {
         this.personIdentifier = personIdentifier;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Date getCreated_At() {
         return created_At;
     }
@@ -102,22 +118,19 @@ public abstract class Person {
         this.created_At = created_At;
     }
 
-    public Date getUpdate_At() {
-        return update_At;
+    public Date getUpdated_At() {
+        return updated_At;
     }
 
-    public void setUpdate_At(Date update_At) {
-        this.update_At = update_At;
+    public void setUpdated_At(Date update_At) {
+        this.updated_At = update_At;
     }
 
     public boolean isValidPerson() {
         if ((this.getName().length() < 3 || this.getName().length() > 20) || !(this.getName().matches("[A-Z,a-z]+"))) {
             return false;
         }
-        if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
-            return false;
-        }
-        if (this.getDesc().equals(" ") || this.getDesc().isEmpty()) {
+        if (!(this.getPersonIdentifier().matches("[0-9]+"))) {
             return false;
         }
 

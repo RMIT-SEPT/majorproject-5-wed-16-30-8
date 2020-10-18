@@ -9,49 +9,32 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Table(name="business")
 @Entity
 public class Business {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long business_id;
 
+    @Column(name="business_name")
     @NotBlank(message = "Business name is required")
     private String business_name;
-
-    @Size(min = 4, max = 5, message = "please enter 4 to 5 characters")
-    @Column(updatable = false, unique = true)
+    @Id
+    @Size(min = 4, max = 20, message = "please enter 4 to 5 characters")
+    @Column(updatable = false, unique = true, name="business_identifier")
     private String businessIdentifier;
-
-
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(name="created_At")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date created_At;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date update_At;
+    @Column(name="updated_At")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date updated_At;
 
+    //service need a way to be stored
 
     public Business() {
-
     }
 
-    public Business(Long business_id, String business_name, String businessIdentifier) {
-        this.business_id = business_id;
+    public Business( String business_name, String businessIdentifier, Date created_At) {
+        this.created_At=created_At;
         this.business_name = business_name;
-        this.businessIdentifier = businessIdentifier;
-    }
-
-    public Long getBusiness_id() {
-        return business_id;
-    }
-
-    public void setBusiness_id(Long business_id) {
-        this.business_id = business_id;
-    }
-
-    public String getBusinessIdentifier() {
-        return businessIdentifier;
-    }
-
-    public void setBusinessIdentifier(String businessIdentifier) {
         this.businessIdentifier = businessIdentifier;
     }
 
@@ -63,6 +46,14 @@ public class Business {
         this.business_name = business_name;
     }
 
+    public String getBusinessIdentifier() {
+        return businessIdentifier;
+    }
+
+    public void setBusinessIdentifier(String businessIdentifier) {
+        this.businessIdentifier = businessIdentifier;
+    }
+
     public Date getCreated_At() {
         return created_At;
     }
@@ -71,26 +62,18 @@ public class Business {
         this.created_At = created_At;
     }
 
-    public Date getUpdate_At() {
-        return update_At;
+    public Date getUpdated_At() {
+        return updated_At;
     }
 
-    public void setUpdate_At(Date update_At) {
-        this.update_At = update_At;
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
     }
 
-    public boolean isBlank() {
-        if (getBusiness_name().isEmpty() || getBusiness_name().equals("")) {
-            return true;
-        }
-        return false;
-    }
 
     public boolean validIdentifier() {
-        if (getBusinessIdentifier().length() < 4 || getBusinessIdentifier().length() > 5) {
-            return false;
-        }
-        if (!(getBusinessIdentifier().matches("[A-Z,a-z,0-9]+"))) {
+
+        if (!(getBusinessIdentifier().matches("[0-9]+"))) {
             return false;
         }
         return true;

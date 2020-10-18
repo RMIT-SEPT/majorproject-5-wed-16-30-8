@@ -1,12 +1,11 @@
-package com.rmit.assignment.demo.PersonService;
+package com.rmit.assignment.demo.services;
 
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.User;
-import com.rmit.assignment.demo.services.UserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,34 +16,20 @@ public class UserServiceTest {
 
     @BeforeEach
     void setup() {
-        tony = new User(200, "tony", "Customer", "a New person");
-        marcus = new User(666, "marcus", "10mil", "creditor");
+        tony = new User("tony","200","pass","0412345678","address", new Date());
+        marcus = new User();
 
         service = new UserService();
 
     }
 
     @Test
-    void incompletePerson() {
-        System.out.println("Test 1: Incomplete Person entry");
-        Assertions.assertEquals("tony", tony.getName());
-    }
-
-    @Test
     void saveOrUpdatePerson_Exception() throws UserException {
         UserException exception = assertThrows(UserException.class, () -> {
-            User temp = new User(200, "tony", "Customer", "a New person");
+            User temp = new User("tony","200","pass","0412345678","address", new Date());;
             service.saveOrUpdateUser(temp);
         });
-        assertEquals("User ID 'CUSTOMER' already exists", exception.getMessage());
-    }
-
-    @Test
-    void findByPerson_Exception() throws UserException {
-        UserException exception = assertThrows(UserException.class, () -> {
-            service.findByUserIdentifier("1423");
-        });
-        assertEquals("User ID '1423' does not exist", exception.getMessage());
+        assertEquals("User ID '200' already exists", exception.getMessage());
     }
 
     @Test

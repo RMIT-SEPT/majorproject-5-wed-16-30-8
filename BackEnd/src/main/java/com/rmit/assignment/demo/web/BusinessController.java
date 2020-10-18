@@ -2,7 +2,6 @@ package com.rmit.assignment.demo.web;
 
 import com.rmit.assignment.demo.model.Business;
 
-import com.rmit.assignment.demo.model.Person;
 import com.rmit.assignment.demo.services.BusinessService;
 import com.rmit.assignment.demo.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,21 @@ public class BusinessController {
 
     @GetMapping("/all")
     public List<Business> getAllBusiness() {
-        return
-                businessService.findAllBusiness();
+        return businessService.findAllBusiness();
+    }
+
+    @PutMapping("/{businessId}")
+    public ResponseEntity<?> updateBusiness(@Valid @RequestBody Business business, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Business business1 = businessService.saveOrUpdateBusiness(business);
+        return new ResponseEntity<Business>(business1, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{businessId}")
+    public ResponseEntity<?> deleteBusiness(@PathVariable String businessId) {
+        businessService.deleteBusiness(businessId);
+        return new ResponseEntity<String>("User with ID: '" + businessId + "' was deleted", HttpStatus.OK);
     }
 }

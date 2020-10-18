@@ -1,18 +1,20 @@
 package com.rmit.assignment.demo.model;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
-@DiscriminatorValue(value = "USER")
+@Table(name="user")
 public class User extends Person {
 
-    public User(long id, String name, String personIdentifier, String desc) {
-        super(id, name, personIdentifier, desc);
+
+    public User(String name, String personIdentifier, String password, String ph_Num,String address, Date created_At){
+        super(name, personIdentifier,password,ph_Num,address, created_At);
     }
 
-    public User() {
 
+    public User() {
     }
 
 

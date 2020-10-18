@@ -9,6 +9,8 @@ import com.rmit.assignment.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserService {
@@ -16,44 +18,58 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     public User saveOrUpdateUser(User user) {
-
         try {
-            user.setPersonIdentifier(user.getPersonIdentifier().toUpperCase());
+            user.setPersonIdentifier(user.getPersonIdentifier());
             return userRepository.save(user);
-
         } catch (UserIdException a) {
             throw new UserIdException("User ID is not acceptable");
         } catch (Exception e) {
-            throw new UserException("User ID '" + user.getPersonIdentifier().toUpperCase() + "' already exists");
+            throw new UserException("User ID '" + user.getPersonIdentifier() + "' already exists");
         }
-
     }
 
 
     public Person findByUserIdentifier(String userId) {
-
-        try {
-            Person user = userRepository.findByPersonIdentifier(userId.toUpperCase());
+            System.out.println("1:   "+userId);
+            Person user = userRepository.findByPersonIdentifier(userId);
+            System.out.println(user.getPersonIdentifier());
             return user;
-        } catch (Exception e) {
-            throw new UserException("User ID '" + userId + "' does not exist");
-        }
     }
 
-    public Iterable<Person> findAllUsers() {
+    public Iterable<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-
     public void deleteUserByIdentifier(String userId) {
         try {
-            Person user = userRepository.findByPersonIdentifier(userId.toUpperCase());
+            User user = userRepository.findByPersonIdentifier(userId);
             userRepository.delete(user);
         } catch (Exception e) {
             throw new UserException("Cannot User with ID '" + userId + "'. This user does not exist");
         }
-
-
     }
+
+    public User findByIdentifierPassword(User user){
+
+        User loginUser = userRepository.findByPersonIdentifier(user.getPersonIdentifier());
+
+        User loginPerson2 = matchNameAndPassword(loginUser, user.getPassword());
+
+        if(loginPerson2== null){
+            throw new UserException("password not match");
+        }
+        return loginPerson2;
+    }
+
+    private User matchNameAndPassword(User user, String password){
+
+            if(user.getPassword().equals(password)){
+                return user;
+            }
+            System.out.println("\n\n\nEMPLOYEE NOT FOUND\n\n\n");
+            return null;
+        }
+
 }

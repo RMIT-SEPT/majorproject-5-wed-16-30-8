@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { BrowserRouter as Redirect } from "react-router-dom";
 import { createPerson } from "../../actions/personActions";
-
+import Header from '../Layout/Header'
+import Login from '../Login/Login'
 
 
 class AddUser extends Component {
@@ -11,10 +13,11 @@ class AddUser extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
-            desc: "",
-            start_date: "",
-            end_date: ""
+            personIdentifier: null,
+            password: "",
+            address: "",
+            ph_Num: ""
+
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -30,9 +33,9 @@ class AddUser extends Component {
         const newPerson = {
             name: this.state.name,
             personIdentifier: this.state.personIdentifier,
-            desc: this.state.desc,
-            start_date: this.state.start_date,
-            end_date: this.state.end_date
+            password: this.state.password,
+            address: this.state.address,
+            ph_Num: this.state.ph_Num
         }
 
         this.props.createPerson(newPerson, this.props.history);
@@ -41,49 +44,63 @@ class AddUser extends Component {
     render() {
         return (
             <div className="persons">
+                <Header
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee} />
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Person form</h5>
+                            <h5 className="display-4 text-center">Create User form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg " placeholder="Person Name"
+                                    <input type="text" className="form-control form-control-lg " placeholder="Full Name"
                                         name="name"
                                         value={this.state.name}
                                         onChange={this.onChange} />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Unique Person ID"
-                                        // disabled 
+                                    <input type="text" className="form-control form-control-lg" placeholder="Username"
                                         name="personIdentifier"
                                         value={this.state.personIdentifier}
                                         onChange={this.onChange} />
                                 </div>
 
                                 <div className="form-group">
-                                    <textarea className="form-control form-control-lg" placeholder="Person Description"
-                                        name="desc"
-                                        value={this.state.desc}
+                                    <input type="password" className="form-control form-control-lg " placeholder="password"
+                                        name="password"
+                                        value={this.state.password}
                                         onChange={this.onChange} />
                                 </div>
-                                <h6>Start Date</h6>
-                                <div className="form-group">
-                                    <input type="date" className="form-control form-control-lg" name="start_date"
 
-                                        value={this.state.start_date}
-                                        onChange={this.onChange} />
-                                </div>
-                                <h6>Estimated End Date</h6>
                                 <div className="form-group">
-                                    <input type="date" className="form-control form-control-lg" name="end_date"
-
-                                        value={this.state.end_date}
+                                    <input type="text" className="form-control form-control-lg " placeholder="address"
+                                        name="address"
+                                        value={this.state.address}
                                         onChange={this.onChange} />
                                 </div>
+
+                                <div className="form-group">
+                                    <input type="text" className="form-control form-control-lg " placeholder="phone number"
+                                        name="ph_Num"
+                                        value={this.state.ph_Num}
+                                        onChange={this.onChange} />
+                                </div>
+
 
                                 <input type="submit" className="btn btn-primary btn-block mt-4" />
                             </form>
+
+                            <Redirect to="/login" render={(props) => (
+                                <Login {...props}
+                                    personIdentifier={this.state.personIdentifier}
+                                    address={this.state.address}
+                                    ph_Num={this.state.ph_Num}
+                                    token={this.state.token} />
+                            )} />
                         </div>
                     </div>
                 </div>
