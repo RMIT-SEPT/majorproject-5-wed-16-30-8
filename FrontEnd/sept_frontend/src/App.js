@@ -16,7 +16,7 @@ import BusinessesPost from './components/Post/BusinessesPost'
 import BookingsPost from './components/Post/BookingsPost'
 import PersonProfile from './components/Persons/PersonProfile';
 
-import Login from './components/Login/Login'
+import Login from './components/LogIn/login'
 import SignUp from './components/Persons/SignUp'
 
 

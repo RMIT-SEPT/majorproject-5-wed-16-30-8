@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Redirect } from "react-router-dom";
 import { createPerson } from "../../actions/personActions";
 import Header from '../Layout/Header'
-import Login from '../Login/Login'
+import Login from '../LogIn/login'
 
 
 class AddUser extends Component {
