@@ -37,8 +37,18 @@ public class BookingController {
         return new ResponseEntity<Booking>(booking, HttpStatus.OK);
     }
 
+    @GetMapping("/business/{businessIdentifier}")
+    public Iterable<Booking> getAllBookingsByBusiness(@PathVariable String businessIdentifier) {
+        return bookingService.findAllBookingByBusiness(businessIdentifier);
+    }
+
+    @GetMapping("/user/{personIdentifier}")
+    public Iterable<Booking> getAllBookingsByPerson(@PathVariable String personIdentifier) {
+        return bookingService.findAllBookingByPerson(personIdentifier);
+    }
+
     @GetMapping("/all")
-    public Iterable<Booking> getAllPersons() {
+    public Iterable<Booking> getAllBookings() {
         return bookingService.findAllBooking();
     }
 

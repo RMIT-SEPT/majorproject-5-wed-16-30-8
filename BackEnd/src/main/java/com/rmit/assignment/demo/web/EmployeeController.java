@@ -3,7 +3,6 @@ package com.rmit.assignment.demo.web;
 
 import com.rmit.assignment.demo.model.Employee;
 import com.rmit.assignment.demo.model.Person;
-import com.rmit.assignment.demo.model.User;
 import com.rmit.assignment.demo.services.EmployeeService;
 import com.rmit.assignment.demo.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,23 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(employee1, HttpStatus.CREATED);
     }
 
-    @GetMapping("{employeeId}")
+    @PostMapping("/login")
+    public ResponseEntity<Employee> loginAsEmployee(@RequestBody Employee employee){
+
+        Employee employee1 = employeeService.findByIdentifierPassword(employee);
+
+        return new ResponseEntity<Employee>(employee1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{employeeId}")
     public ResponseEntity<?> getEmployeeById(@PathVariable String employeeId) {
         Person employee = employeeService.findByEmployeeIdentifer(employeeId);
         return new ResponseEntity<Person>(employee, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{businessId}")
+    public Iterable<Employee> getEmployeeByBusinessId(@PathVariable String businessId) {
+        return employeeService.findByBusinessId(businessId);
     }
 
     @GetMapping("/all")

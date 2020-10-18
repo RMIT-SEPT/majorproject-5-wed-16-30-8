@@ -18,9 +18,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    //Check if username exist in the system
-
-
 
     public User saveOrUpdateUser(User user) {
         try {
@@ -71,6 +68,7 @@ public class UserService {
             if(user.getPassword().equals(password)){
                 return user;
             }
+            System.out.println("\n\n\nEMPLOYEE NOT FOUND\n\n\n");
             return null;
         }
 

@@ -4,8 +4,6 @@ package com.rmit.assignment.demo.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -16,11 +14,16 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="booking_identifier")
     private int bookingIdentifier;
+
     @Column(name="business_identifier")
     private String businessIdentifier;
 
     @Column(name="business_name")
     private String business_name;
+
+
+    @Column(name="person_identifier")
+    private String personIdentifier;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name="booking_Date")
@@ -37,6 +40,10 @@ public class Booking {
     private String employee_id;
 
     public Booking() {
+
+    }
+
+    public Booking(int bookingIdentifier, String business_name, Date booking_Date, String employee_id) {
     }
 
     public int getBookingIdentifier() {
@@ -62,6 +69,11 @@ public class Booking {
     public void setBusiness_name(String business_name) {
         this.business_name = business_name;
     }
+
+    public String getPersonIdentifier() {
+        return personIdentifier; }
+
+    public void setPersonIdentifier(String personIdentifier) { this.personIdentifier = personIdentifier; }
 
     public Date getBooking_Date() {
         return booking_Date;

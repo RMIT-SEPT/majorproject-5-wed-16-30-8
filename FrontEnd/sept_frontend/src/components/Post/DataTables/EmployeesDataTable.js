@@ -5,16 +5,13 @@ class EmployeesDataTable extends Component {
         return (
             <tr>
                 <td>
-                    {this.props.obj.id}
-                </td>
-                <td>
                     {this.props.obj.personIdentifier}
                 </td>
                 <td>
                     {this.props.obj.name}
                 </td>
                 <td>
-                    {this.props.obj.businessIdentifier}
+                    {this.props.obj.businessId}
                 </td>
             </tr>
         )

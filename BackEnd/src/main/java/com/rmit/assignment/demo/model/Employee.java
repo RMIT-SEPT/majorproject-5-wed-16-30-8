@@ -5,9 +5,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
-//@Table(name="employee")
+
 @Entity
-//@DiscriminatorValue(value = "EMPLOYEE")
 public class Employee extends Person {
     @Column(name="business_id")
     private String businessId;

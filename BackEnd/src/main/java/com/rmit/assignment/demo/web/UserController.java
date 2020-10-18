@@ -1,8 +1,6 @@
 package com.rmit.assignment.demo.web;
 
-import com.rmit.assignment.demo.model.Business;
 import com.rmit.assignment.demo.model.Person;
-import com.rmit.assignment.demo.model.User;
 import com.rmit.assignment.demo.model.User;
 import com.rmit.assignment.demo.services.MapValidationErrorService;
 import com.rmit.assignment.demo.services.UserService;
@@ -32,8 +30,8 @@ public class UserController {
         return new ResponseEntity<User>(user1, HttpStatus.CREATED);
     }
 
-    @PostMapping("")
-    public ResponseEntity<User> loginAsUser(@RequestBody User user){
+    @PostMapping("/login")
+    public ResponseEntity<User> loginAsUser(@RequestBody User user) {
 
         User user1 = userService.findByIdentifierPassword(user);
 

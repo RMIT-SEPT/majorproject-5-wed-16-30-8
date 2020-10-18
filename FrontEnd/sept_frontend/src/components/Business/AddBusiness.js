@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createBusiness } from "../../actions/businessActions";
+import Header from '../Layout/Header'
 
 class AddBusiness extends Component {
     constructor() {
@@ -37,10 +38,16 @@ class AddBusiness extends Component {
     render() {
         return (
             <div className="business">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Business form</h5>
+                            <h5 className="display-4 text-center">Create Business form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
@@ -51,7 +58,6 @@ class AddBusiness extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control form-control-lg" placeholder="Unique Business ID"
-                                        // disabled 
                                         name="businessIdentifier"
                                         value={this.state.businessIdentifier}
                                         onChange={this.onChange} />

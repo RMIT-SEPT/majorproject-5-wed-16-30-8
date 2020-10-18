@@ -130,10 +130,9 @@ public abstract class Person {
         if ((this.getName().length() < 3 || this.getName().length() > 20) || !(this.getName().matches("[A-Z,a-z]+"))) {
             return false;
         }
-        if (this.getPersonIdentifier().length() < 4 || this.getPersonIdentifier().length() > 5) {
+        if (!(this.getPersonIdentifier().matches("[0-9]+"))) {
             return false;
         }
-
 
         return true;
     }

@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createEmployee } from "../../actions/employeeAction";
+import Header from '../Layout/Header'
 
 import makeAnimated from 'react-select/animated';
 import AsyncSelect from 'react-select/async';
 
-const API = 'http://localhost:8080/api/business/all'
+const API = 'http://ec2-3-86-48-162.compute-1.amazonaws.com:8080/api/business/all'
+// const API = "http://localhost:8080/api/business/all"
 
 class AddEmployee extends Component {
     constructor() {
@@ -14,11 +16,12 @@ class AddEmployee extends Component {
 
         this.state = {
             name: "",
-            personIdentifier: "",
-            businessIdentifier: "",
+            personIdentifier: null,
+            businessId: "",
             password: "",
             address: "",
-            ph_Num: ""
+            ph_Num: "",
+            businessIdentifier: ""
             
 
         };
@@ -38,7 +41,7 @@ class AddEmployee extends Component {
         const newEmployee = {
             name: this.state.name,
             personIdentifier: this.state.personIdentifier,
-            businessIdentifier: this.state.businessIdentifier,
+            businessId: this.state.businessId,
             password: this.state.password,
             address: this.state.address,
             ph_Num: this.state.ph_Num
@@ -77,6 +80,7 @@ class AddEmployee extends Component {
             this.setState({
                 selectedOption,
                 business_name: selectedOption.label,
+                businessId: selectedOption.value,
                 businessIdentifier: selectedOption.value
             });
         }
@@ -86,10 +90,16 @@ class AddEmployee extends Component {
         const animatedComponents = makeAnimated();
         return (
             <div className="project">
+                <Header 
+                    personIdentifier={this.props.personIdentifier}
+                    address={this.props.address}
+                    ph_Num={this.props.ph_Num}
+                    token={this.props.token}
+                    isEmployee={this.props.isEmployee}/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h5 className="display-4 text-center">Create / Edit Employee form</h5>
+                            <h5 className="display-4 text-center">Create Employee form</h5>
                             <hr />
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
@@ -100,7 +110,6 @@ class AddEmployee extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input type="text" className="form-control form-control-lg" placeholder="Unique Employee ID"
-                                        // disabled 
                                         name="personIdentifier"
                                         value={this.state.personIdentifier}
                                         onChange={this.onChange} />
@@ -123,7 +132,6 @@ class AddEmployee extends Component {
 
                                 <div className="form-group">
                                     <input type="" className="form-control form-control-lg" placeholder="Unique Business ID"
-                                        // disabled 
                                         name="businessIdentifier"
                                         value={this.state.businessIdentifier}
                                         />

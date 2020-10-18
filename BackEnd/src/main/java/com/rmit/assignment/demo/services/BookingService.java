@@ -5,7 +5,6 @@ import com.rmit.assignment.demo.Repositories.BookingRepository;
 import com.rmit.assignment.demo.exceptions.BookingException;
 import com.rmit.assignment.demo.exceptions.UserException;
 import com.rmit.assignment.demo.model.Booking;
-import com.rmit.assignment.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +30,25 @@ public class BookingService {
         return booking;
     }
 
+    public Booking findByBusinessIdentifier(String businessIdentifier) {
+        Booking booking = bookingRepository.findByBusinessIdentifier(businessIdentifier);
+
+        if (booking == null) {
+            throw new BookingException("Person ID '" + businessIdentifier + "' does not exist");
+        }
+        return booking;
+    }
+
     public Iterable<Booking> findAllBooking() {
         return bookingRepository.findAll();
+    }
+
+    public Iterable<Booking> findAllBookingByBusiness(String businessIdentifier) {
+        return bookingRepository.findAllByBusinessIdentifier(businessIdentifier);
+    }
+
+    public Iterable<Booking> findAllBookingByPerson(String personIdentifier) {
+        return bookingRepository.findAllByPersonIdentifier(personIdentifier);
     }
 
     public void deleteBooking(String bookingId) {
